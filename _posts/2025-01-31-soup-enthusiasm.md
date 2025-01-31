@@ -163,14 +163,14 @@ You can download The Sims 2 for free [here](https://www.myabandonware.com/game/t
 The Sims 3 costs 20€ on Steam.
 The Sims 4 base game is free.
 
-Electronic Arts (2000) Les Sims (game guide in French, original printed version) ([online version](https://sims.fandom.com/wiki/Game_guide:The_Sims))
-O'Riordan (2001) [Playing with Lara in virtual space](https://www.academia.edu/544622/Playing_With_Lara_in_Virtual_Space)
-Delaume (2003) [Corpus Simsi](https://chloedelaume.net/?page_id=294)
-Nutt & Railton (2003) [The Sims: Real Life as Genre](https://www.tandfonline.com/doi/epdf/10.1080/1369118032000163268?needAccess=false)
-Wirman (2011) [Playing The Sims 2: Constructing and negotiating woman computer game player identities through the practice of skinning](https://scholar.google.com.hk/citations?view_op=view_citation&hl=en&user=IhTRvGMAAAAJ&citation_for_view=IhTRvGMAAAAJ:UeHWp8X0CEIC)
-Iversen (2014) [Playing with Sims as a Space of One's Own](https://www.researchgate.net/publication/266622211_Playing_with_Sims_as_a_Space_of_One's_Own)
-Voronaya (2022) [Psychological analysis of “The sims 3” computer simulation game discourse: opportunity to create models of sustainable behavior](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.e3s-conferences.org/articles/e3sconf/pdf/2022/30/e3sconf_interagromash2022_04015.pdf)
-Hengari (2023) [Determining the accuracy of The Sims 2 as a model for life](https://journals.le.ac.uk/index.php/jist/article/view/4382) (spoiler: it is not accurate)
+- Electronic Arts (2000) Les Sims (game guide in French, original printed version) ([online version](https://sims.fandom.com/wiki/Game_guide:The_Sims))
+- O'Riordan (2001) [Playing with Lara in virtual space](https://www.academia.edu/544622/Playing_With_Lara_in_Virtual_Space)
+- Delaume (2003) [Corpus Simsi](https://chloedelaume.net/?page_id=294)
+- Nutt & Railton (2003) [The Sims: Real Life as Genre](https://www.tandfonline.com/doi/epdf/10.1080/1369118032000163268?needAccess=false)
+- Wirman (2011) [Playing The Sims 2: Constructing and negotiating woman computer game player identities through the practice of skinning](https://scholar.google.com.hk/citations?view_op=view_citation&hl=en&user=IhTRvGMAAAAJ&citation_for_view=IhTRvGMAAAAJ:UeHWp8X0CEIC)
+- Iversen (2014) [Playing with Sims as a Space of One's Own](https://www.researchgate.net/publication/266622211_Playing_with_Sims_as_a_Space_of_One's_Own)
+- Voronaya (2022) [Psychological analysis of “The sims 3” computer simulation game discourse: opportunity to create models of sustainable behavior](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.e3s-conferences.org/articles/e3sconf/pdf/2022/30/e3sconf_interagromash2022_04015.pdf)
+- Hengari (2023) [Determining the accuracy of The Sims 2 as a model for life](https://journals.le.ac.uk/index.php/jist/article/view/4382) (spoiler: it is not accurate)
 
 I would also love to read this(hi Santa!):  [Gee, James Paul, and Elisabeth R. Hayes. 2010. Women and Gaming: The Sims and 21st Century Learning](https://www.amazon.com/Women-Gaming-Sims-Century-Learning/dp/0230623417 ).
 
