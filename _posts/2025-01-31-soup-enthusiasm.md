@@ -172,5 +172,5 @@ Iversen (2014) [Playing with Sims as a Space of One's Own](https://www.researchg
 Voronaya (2022) [Psychological analysis of “The sims 3” computer simulation game discourse: opportunity to create models of sustainable behavior](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.e3s-conferences.org/articles/e3sconf/pdf/2022/30/e3sconf_interagromash2022_04015.pdf)
 Hengari (2023) [Determining the accuracy of The Sims 2 as a model for life](https://journals.le.ac.uk/index.php/jist/article/view/4382) (spoiler: it is not accurate)
 
-I would also love to read that (hi Santa!):  [Gee, James Paul, and Elisabeth R. Hayes. 2010. Women and Gaming: The Sims and 21st Century Learning](https://www.amazon.com/Women-Gaming-Sims-Century-Learning/dp/0230623417 ).
+I would also love to read this(hi Santa!):  [Gee, James Paul, and Elisabeth R. Hayes. 2010. Women and Gaming: The Sims and 21st Century Learning](https://www.amazon.com/Women-Gaming-Sims-Century-Learning/dp/0230623417 ).
 
