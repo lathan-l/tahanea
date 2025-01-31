@@ -2,7 +2,6 @@
 title: "The Sims are something else"
 date: 2025-01-31
 ---
-> [!Disclaimer]
 > This not an article about Structured Inventory of Malingered Symptomatology (SIMS), although now I kind of wish it were. 
 
 # The Sims are something else
@@ -154,7 +153,7 @@ Next time, I'll talk to you about building and architecture in The Sims. Or abou
 Thank you for reading,
 Sul sul!
 
-Lorie
+Lathanel
 Lifelong simmer - Soup enthusiast
 
 #### Links
