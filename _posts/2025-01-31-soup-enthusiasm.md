@@ -90,14 +90,14 @@ The Sims 2 were released in 2004 and it was a revolution: I was almost twelve wh
 I wanted to recreate my family, but I was faced with a problem: one lot could only hold eight sims, and we were nine. I had divorced parents, two step-parents and four half-siblings. In order to get an accurate family tree, I would have had to replay the divorce (savage! lol), and then the new marriages, and hope for the babies to be born in the correct order. I did not try it. I created two households. I never played with them and started investing in my ideal neighborhood. I created cool teens who shared traits with me, but I put them in imaginary families instead, much like my Sims 1 games.
 
 Personality did not evolve much, but The Sims 2 introduced "life aspirations", which translated into daily wants and fears, that the player had to take into account in addition to their basic needs, as well as lifelong goals: since they were not immortal anymore, sims had to have a purpose, and a kind of scale to measure their success in life, in order to reap rewards at some point. The aspirations were as follows :
-- Grow Up: that's what toddlers and children want to do. Can't argue with that.
-- Family: basically the Disney Happily Ever After, soulmate, big wedding, children, dog, white fence, you know the drill.
-- Knowledge: two words: Skill. Points. It's what Hermione Granger wants; it's what any proper mad scientist wants: to know everything.
-- Romance: sex. Like, with as many people and as often as possible. No engagement, just parties and sex.
-- Fortune: money, luxury, big cars, high-paying job, pool, you name it. 
-- Popularity: friends? Influence? Fame? Human interaction. Lots of it.
-- Pleasure: fun? It is very similar to romance, but it is not focused on sex. 
-- Grilled Cheese: cooking, eating and talking about grilled cheese sandwiches. It's the one I relate to the most. Not an aspiration you can use to create a sim, unfortunately, it's only obtained through gameplay.
+- **Grow Up**: that's what toddlers and children want to do. Can't argue with that.
+- **Family**: basically the Disney Happily Ever After, soulmate, big wedding, children, dog, white fence, you know the drill.
+- **Knowledge**: two words: Skill. Points. It's what Hermione Granger wants; it's what any proper mad scientist wants: to know everything.
+- **Romance**: sex. Like, with as many people and as often as possible. No engagement, just parties and sex.
+- **Fortune**: money, luxury, big cars, high-paying job, pool, you name it. 
+- **Popularity**: friends? Influence? Fame? Human interaction. Lots of it.
+- **Pleasure**: fun? It is very similar to romance, but it is not focused on sex. 
+- **Grilled Cheese**: cooking, eating and talking about grilled cheese sandwiches. It's the one I relate to the most. Not an aspiration you can use to create a sim, unfortunately, it's only obtained through gameplay.
 
 I never played with Popularity; it was the most boring life goal I could imagine. I played with Pleasure and Romance a little, but none felt rewarding because those aspirations were about *multiplying* experiences, and it was a bit repetitive. Fortune was fun: it was easy to make up stories about Uncle Scrooge in the game. Ambitious Fortune sims were paving the way for legacies, but Family was of course the most legacy-fitting aspiration. Most of the sims I created were Family oriented, because I wanted parents to be happy to care for their children. I wanted the children to be their priority, Fortune and Family sims made great couples to raise my teenage simselves. 
 
@@ -119,7 +119,7 @@ The personality points were abandoned and replaced by "traits", corresponding to
 - **Night owl**: I had been suffering of insomnia for years (and it would only stop when I turned 29), it felt right to make my sims suffer as well.
 - **Vegetarian**: I tried it once and discovered that if a vegetarian sim eats meat, they get nauseous and vomit. As a very anxious teenager, I could relate, and I started using it for authenticity, even though I wasn't a vegetarian at all.
 
-Shit, it is starting to paint a more precise picture of my personality. I wish I had paused to think about it ten years ago, it would have saved me some good therapy money. Still don't know what's up with the green thumb. As I like to put it, I am an indoor human; I guess this is my way of enjoying nature? Who knows.
+Ouch, it is starting to paint a more precise picture of my personality. I wish I had paused to think about it ten years ago, it would have saved me some good therapy money. Still don't know what's up with the green thumb. As I like to put it, I am an indoor human; I guess this is my way of enjoying nature? Who knows.
 
 #### The Sims 4
 The last game was released ten years ago; when I first played, I was VERY disappointed to notice that the creators had backtracked with the neighborhood-centered concept of The Sims 3. It felt like a big setback: I had no intention of playing a modernized Sims 2 game, I wanted novelty! And this new game didn't even have *pools*. What a joke. But the creators had added something new: "emotions". Now, mourning sims were sad. Chess-playing sims were focused. Inspired sims would prepare better meals. The quest for a perfect morning routine just turned up a notch, it made playing the game *a lot more difficult*: sims had to be in the right mood in order to do things efficiently. Otherwise, they just wouldn't listen!
@@ -154,6 +154,7 @@ Thank you for reading,
 Sul sul!
 
 Lathanel
+
 Lifelong simmer - Soup enthusiast
 
 #### Links
