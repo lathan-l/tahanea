@@ -9,7 +9,7 @@
     <header>
         <h1><a href="index.html">tahanea</a></h1>
     </header>
-    <div class="layout">
+    <div class="layout layout--article">
     <nav class="chapter-nav" aria-label="Chapter navigation">
         <p class="chapter-nav__title">this is a work in progress</p>
     </nav>
@@ -87,6 +87,7 @@ Indeed, <code>dune exec hello</code> prints &quot;Hello, World!&quot; to the con
 
     </main>
 </div>
+
     <footer>
         <p id="footer-quote"></p>
         <p>copyright 2026, created with
@@ -95,10 +96,43 @@ Indeed, <code>dune exec hello</code> prints &quot;Hello, World!&quot; to the con
         </p>
     </footer>
     <script>
+        // On long pages a vertical scrollbar eats a little viewport width, so
+        // the centred header sits slightly left of where it lands on short
+        // pages (no scrollbar) — enough to visibly jump when navigating.
+        // Fix: on short pages only, nudge the header left by half the
+        // scrollbar width so its centre matches the long-page layout.
         (function () {
-            var openings = ["java-tainted developer", "could-be witch", "not a robot", "well-meaning"];
-            var middles = ["linguist rising", "aspiring cat lady", "sims player", "soup enthusiast", "ocaml noob"];
-            var endings = ["occasional tea drinker", "coffee addict", "likes pickles", "designated drinker"];
+            var header = document.querySelector("header");
+            if (!header) return;
+            function scrollbarWidth() {
+                var probe = document.createElement("div");
+                probe.style.cssText =
+                    "position:absolute;top:-9999px;width:100px;height:100px;overflow:scroll";
+                document.body.appendChild(probe);
+                var w = probe.offsetWidth - probe.clientWidth;
+                probe.remove();
+                return w;
+            }
+            function align() {
+                header.style.transform = "";
+                var de = document.documentElement;
+                var scrolls = de.scrollHeight > de.clientHeight;
+                // only relevant on wide screens where the header is centred
+                var wide = window.matchMedia("(min-width: 46rem)").matches;
+                if (!scrolls && wide) {
+                    header.style.transform =
+                        "translateX(-" + scrollbarWidth() / 2 + "px)";
+                }
+            }
+            align();
+            window.addEventListener("resize", align);
+        })();
+    </script>
+    <script>
+        (function () {
+            var openings = ["java-tainted developer", "maybe a witch", "not a robot", "well-meaning", "indoor person"];
+            var middles = ["linguist rising", "aspiring cat lady", "sims player", "soup enthusiast", "ocaml noob", "food motivated"];
+            var endings = ["occasional tea drinker", "coffee addict", "likes pickles", "sings to herself", "somewhat swashbuckling", "wears funny earrings"];
             function pick(list) {
                 return list[Math.floor(Math.random() * list.length)];
             }
