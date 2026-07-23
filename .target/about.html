@@ -7,19 +7,13 @@
 
 <body>
     <header>
-        <h1>tahanea</h1>
+        <h1><a href="/index.html">tahanea</a></h1>
     </header>
     <div class="layout">
     <nav class="chapter-nav" aria-label="Chapter navigation">
-        <p class="chapter-nav__title">In this chapter</p>
-        <ul>
-            <li><a href="#">Chapter 1</a></li>
-            <li><a href="#">Chapter 2</a></li>
-            <li><a href="#">Chapter 3</a></li>
-        </ul>
+        <p class="chapter-nav__title">this is a work in progress</p>
     </nav>
     <main>
-        <h2>Hey</h2>
         <h1 id="about-this-site"><a class="anchor" aria-hidden="true" href="#about-this-site"></a>About this site</h1>
 <h2 id="a-title"><a class="anchor" aria-hidden="true" href="#a-title"></a>A Title</h2>
 <p>some text</p>
@@ -33,7 +27,6 @@ https://yocaml.github.io/tutorial/</p>
 
     </main>
 </div>
-
     <footer>
         <p id="footer-quote"></p>
         <p>copyright 2026, created with
@@ -42,11 +35,9 @@ https://yocaml.github.io/tutorial/</p>
         </p>
     </footer>
     <script>
-        // build a fresh quote on every reload: one piece from each of the
-        // three lists, joined with commas
         (function () {
-            var openings = ["java-tainted developer", "could-be witch", "not a robot"];
-            var middles = ["linguist rising", "aspiring cat lady", "sims player", "soup enthusiast", "pretends to know ocaml"];
+            var openings = ["java-tainted developer", "could-be witch", "not a robot, well-meaning"];
+            var middles = ["linguist rising", "aspiring cat lady", "sims player", "soup enthusiast", "ocaml noob"];
             var endings = ["occasional tea drinker", "coffee addict", "likes pickles", "designated drinker"];
             function pick(list) {
                 return list[Math.floor(Math.random() * list.length)];
