@@ -1,0 +1,33 @@
+name: hum
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: YOCaml
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: 5.3.0
+          opam-depext-flags: --with-test
+
+      - run: curl -fsSL https://d2lang.com/install.sh | sh -s --
+      - run: opam install . --deps-only --with-doc --with-test
+      - run: opam exec -- dune build --profile=release
+      - run: opam exec -- dune exec bin/site.exe -- build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./.target
+          external_repository: xvw/xvw.github.io
+          publish_branch: master
+          enable_jekyll: false
