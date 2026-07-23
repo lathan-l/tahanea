@@ -74,7 +74,7 @@ let create_article source_path =
     and+ apply_templates =
       Pipeline.read_templates
         (module Yocaml_jingoo)
-        Path.[ templates_path / "page.html"; templates_path / "layout.html" ]
+        Path.[ templates_path / "article.html"; templates_path / "layout.html" ]
     in
     content |> Yocaml_markdown.from_string_to_html
     |> apply_templates ~metadata (module Archetype.Article)

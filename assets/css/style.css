@@ -75,9 +75,11 @@ body {
   flex-direction: column;
 }
 
-/* decorative coffee-stain: rotated 45° to the left and pushed off the
+/* decorative top-right stain: rotated 45° to the left and pushed off the
    right edge of the page near the top. z-index:-1 keeps it behind the
-   text; the html `overflow-x: clip` trims the part beyond the frame. */
+   text; the html `overflow-x: clip` trims the part beyond the frame.
+   The image itself is chosen per page template below, so each kind of
+   page can wear its own decoration. */
 body::before {
   content: "";
   position: absolute;
@@ -85,6 +87,7 @@ body::before {
   right: -7rem;
   width: 22rem;
   height: 22rem;
+  /* default decoration; individual templates override the image below */
   background-image: url("img/toppng.com-coffee-stain-transparent-2450x2478.png");
   background-repeat: no-repeat;
   background-size: contain;
@@ -92,6 +95,44 @@ body::before {
   transform-origin: center;
   pointer-events: none;
   z-index: -1;
+}
+
+/* --- per-template decoration ------------------------------------------
+   Each page template stamps a distinguishing class on its root element
+   (see assets/templates/*.html). We key the top-right decoration off it
+   so every kind of page can carry a different background. To change one
+   template's decoration, edit only its rule here. */
+
+/* article pages — ink splatter */
+body:has(.layout--article)::before {
+  background-image: url("img/pngkey.com-color-splatter-png-461231.png");
+  /* anchor to the top of the page so it scrolls away (stays hidden) once
+     the reader moves down; top:0/right:0 still land on the viewport corner
+     since body spans the full width with no border */
+  position: absolute;
+  width: 44rem;
+  height: 44rem;
+  top: 0;
+  left: 0;
+  /* the image is `contain`ed inside the 44rem box; without this it defaults
+     to the top-left of that box and floats far from the edge */
+  background-position: left top;
+  transform: none;
+}
+
+/* standalone pages (e.g. about) — coffee stain */
+body:has(.layout--page)::before {
+  background-image: url("img/toppng.com-coffee-stain-transparent-2450x2478.png");
+}
+
+/* home / index */
+body:has(.home--index)::before {
+  background-image: url("img/toppng.com-coffee-stain-transparent-2450x2478.png");
+}
+
+/* 404 */
+body:has(.home--404)::before {
+  background-image: url("img/toppng.com-coffee-stain-transparent-2450x2478.png");
 }
 
 /* --------------------------------------------------------------------------
