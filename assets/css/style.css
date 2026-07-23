@@ -85,7 +85,7 @@ body::before {
   right: -7rem;
   width: 22rem;
   height: 22rem;
-  background-image: url("/img/toppng.com-coffee-stain-transparent-2450x2478.png");
+  background-image: url("img/toppng.com-coffee-stain-transparent-2450x2478.png");
   background-repeat: no-repeat;
   background-size: contain;
   transform: rotate(-45deg);
@@ -114,7 +114,7 @@ body::before {
   font-family: var(--head-font);
   font-size: 0.95rem;
   /* decorative splatter resting at the bottom of the left column */
-  background-image: url("/img/toppng.com-stains-splatter-png-coffee-stain-transparent-949x646.png");
+  background-image: url("img/toppng.com-stains-splatter-png-coffee-stain-transparent-949x646.png");
   background-repeat: no-repeat;
   background-position: bottom left;
   background-size: 11rem auto;
