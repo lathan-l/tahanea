@@ -59,6 +59,31 @@ let create_404 =
   in
   Action.Static.write_file target_page_path pipeline
 
+let create_article source_path =
+  let target_article_path =
+    source_path |> Path.change_extension "html" |> Path.move ~into:target_path
+  in
+  let pipeline =
+    let open Task in
+    let+ metadata, content =
+      Pipeline.read_file_with_metadata
+        (module Yocaml_yaml)
+        (module Archetype.Article)
+        source_path
+    and+ () = Pipeline.track_file binary_path
+    and+ apply_templates =
+      Pipeline.read_templates
+        (module Yocaml_jingoo)
+        Path.[ templates_path / "page.html"; templates_path / "layout.html" ]
+    in
+    content |> Yocaml_markdown.from_string_to_html
+    |> apply_templates ~metadata (module Archetype.Article)
+  in
+  Action.Static.write_file target_article_path pipeline
+
+let create_articles =
+  Batch.iter_files (Path.rel [ "content"; "articles" ]) create_article
+
 let create_index =
   let source_path = Path.rel [ "content"; "index.md" ] in
   let target_page_path = Path.rel [ ".target"; "index.html" ] in
@@ -83,7 +108,8 @@ let create_index =
 let program () =
   let open Eff in
   Action.restore_cache cache_path
-  >>= copy_css >>= copy_images >>= create_404 >>= create_pages >>= create_index
+  >>= copy_css >>= copy_images >>= create_404 >>= create_pages
+  >>= create_articles >>= create_index
   >>= Action.store_cache cache_path
 
 let () =

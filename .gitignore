@@ -15,7 +15,7 @@
 # ocamlbuild working directory
 _build/
 .target/
-.cache/
+.cache
 
 # ocamlbuild targets
 *.byte
