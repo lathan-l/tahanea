@@ -1,0 +1,14 @@
+<div class="layout">
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+        <p class="chapter-nav__title">In this chapter</p>
+        <ul>
+            <li><a href="#">Chapter 1</a></li>
+            <li><a href="#">Chapter 2</a></li>
+            <li><a href="#">Chapter 3</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>{{ page_title }}</h2>
+        {{safe (yocaml_body) }}
+    </main>
+</div>

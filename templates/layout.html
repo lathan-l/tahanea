@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>tahanea</h1>
+    </header>
+    {{safe (yocaml_body) }}
+    <footer>
+        <p id="footer-quote"></p>
+        <p>copyright 2026, created with
+            <a href="https://yocaml.github.io/tutorial/">YOCaml</a>
+            and a bit of help from Claude to write awful CSS
+        </p>
+    </footer>
+    <script>
+        // build a fresh quote on every reload: one piece from each of the
+        // three lists, joined with commas
+        (function () {
+            var openings = ["java-tainted developer", "could-be witch", "not a robot"];
+            var middles = ["linguist rising", "aspiring cat lady", "sims player", "soup enthusiast", "pretends to know ocaml"];
+            var endings = ["occasional tea drinker", "coffee addict", "likes pickles", "designated drinker"];
+            function pick(list) {
+                return list[Math.floor(Math.random() * list.length)];
+            }
+            document.getElementById("footer-quote").textContent =
+                [pick(openings), pick(middles), pick(endings)].join(", ");
+        })();
+    </script>
+</body>
+
+</html>

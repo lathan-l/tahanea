@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>tahanea</h1>
+    </header>
+    <main class="home">
+    <h2>tahanea</h2>
+    <p>Articles</p>
+<ul>
+<li>populate with list of articles</li>
+</ul>
+<p>Talks</p>
+<ul>
+<li>populate with list of talks</li>
+</ul>
+<p>Plain Pattern Language
+march 19, 2026 - Lambda Nantes
+june 5, 2026 - Fork it! Rouen
+june 16, 2026 - Software Crafters Nantes (10y anniversary)</p>
+<p>Intro to Computational Linguistics
+feb 15, 2017 - Meetup IA Lyon <a href="https://www.youtube.com/watch?v=abI5Ik8uMiU&amp;t=1256s" target="_blank" rel="noopener">watch on youtube</a></p>
+<p>Curriculum vitae</p>
+<ul>
+<li>special page</li>
+</ul>
+<p>Mysterious links you should click on</p>
+<ul>
+<li>xavier's blog https://xvw.lol/</li>
+<li><a href="https://wpsa.com/iphf/">link to chicken hall of fame</a></li>
+<li>https://www.matthewgraygubler.com/</li>
+</ul>
+
+    <ul class="page-list">
+        <li><a href="/about.html">about this site</a></li>
+        <li><a href="/soup-enthusiasm.html">sims article</a></li>
+    </ul>
+</main>
+    <footer>
+        <p id="footer-quote"></p>
+        <p>copyright 2026, created with
+            <a href="https://yocaml.github.io/tutorial/">YOCaml</a>
+            and a bit of help from Claude to write awful CSS
+        </p>
+    </footer>
+    <script>
+        // build a fresh quote on every reload: one piece from each of the
+        // three lists, joined with commas
+        (function () {
+            var openings = ["java-tainted developer", "could-be witch", "not a robot"];
+            var middles = ["linguist rising", "aspiring cat lady", "sims player", "soup enthusiast", "pretends to know ocaml"];
+            var endings = ["occasional tea drinker", "coffee addict", "likes pickles", "designated drinker"];
+            function pick(list) {
+                return list[Math.floor(Math.random() * list.length)];
+            }
+            document.getElementById("footer-quote").textContent =
+                [pick(openings), pick(middles), pick(endings)].join(", ");
+        })();
+    </script>
+</body>
+
+</html>
