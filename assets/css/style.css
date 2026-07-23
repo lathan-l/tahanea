@@ -310,6 +310,19 @@ a:visited {
   color: var(--link);
 }
 
+/* links inside headings read as the heading, not as links: same colour,
+   no underline (a subtle underline appears only on hover/focus for
+   affordance) */
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* --------------------------------------------------------------------------
    6. Lists
    -------------------------------------------------------------------------- */

@@ -2,7 +2,7 @@ open Yocaml
 
 let cache_path = Path.rel [ ".cache" ]
 let target_path = Path.rel [ ".target" ]
-let templates_path = Path.rel [ "templates" ]
+let templates_path = Path.rel [ "assets"; "templates" ]
 let binary_path = Path.from_string Sys.executable_name
 
 let copy_css =
@@ -35,12 +35,32 @@ let create_page source_path =
   in
   Action.Static.write_file target_page_path pipeline
 
-let create_pages = Batch.iter_files (Path.rel [ "pages" ]) create_page
+let create_pages =
+  Batch.iter_files (Path.rel [ "content"; "pages" ]) create_page
 
-(* home page: shares the header/footer shell but uses the single-column
-   [index.html] body (no chapter columns) with a static list of pages *)
+let create_404 =
+  let source_path = Path.rel [ "content"; "404.md" ] in
+  let target_page_path = Path.rel [ ".target"; "404.html" ] in
+  let pipeline =
+    let open Task in
+    let+ metadata, content =
+      Pipeline.read_file_with_metadata
+        (module Yocaml_yaml)
+        (module Archetype.Page)
+        source_path
+    and+ () = Pipeline.track_file binary_path
+    and+ apply_templates =
+      Pipeline.read_templates
+        (module Yocaml_jingoo)
+        Path.[ templates_path / "404tpl.html"; templates_path / "layout.html" ]
+    in
+    content |> Yocaml_markdown.from_string_to_html
+    |> apply_templates ~metadata (module Archetype.Page)
+  in
+  Action.Static.write_file target_page_path pipeline
+
 let create_index =
-  let source_path = Path.rel [ "index.md" ] in
+  let source_path = Path.rel [ "content"; "index.md" ] in
   let target_page_path = Path.rel [ ".target"; "index.html" ] in
   let pipeline =
     let open Task in
@@ -63,7 +83,7 @@ let create_index =
 let program () =
   let open Eff in
   Action.restore_cache cache_path
-  >>= copy_css >>= copy_images >>= create_index >>= create_pages
+  >>= copy_css >>= copy_images >>= create_404 >>= create_pages >>= create_index
   >>= Action.store_cache cache_path
 
 let () =
