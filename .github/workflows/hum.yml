@@ -5,29 +5,30 @@ on:
     branches:
       - main
 
+# Allow the built-in GITHUB_TOKEN to push to the gh-pages branch
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: YOCaml
+      - name: Set up OCaml
         uses: ocaml/setup-ocaml@v3
         with:
           ocaml-compiler: 5.3.0
-          opam-depext-flags: --with-test
 
-      - run: curl -fsSL https://d2lang.com/install.sh | sh -s --
       - run: opam install . --deps-only --with-doc --with-test
       - run: opam exec -- dune build --profile=release
       - run: opam exec -- dune exec bin/site.exe -- build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./.target
-          external_repository: xvw/xvw.github.io
-          publish_branch: master
+          publish_branch: gh-pages
           enable_jekyll: false
