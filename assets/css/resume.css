@@ -1,0 +1,361 @@
+/* Styles that apply only to the résumé page (resume.html).
+   Loaded with reset.css only — this file stands alone (no style.css).
+
+   Look & feel: an official printed document. Equal parts Lumon/Severance
+   corporate signage, IKEA assembly manual, and a mid-century (1960s–80s)
+   government/company form. Warm paper, black ink, one clinical teal accent,
+   typewriter monospace for all "record" data, and numbered sections. */
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=Michroma&display=swap");
+
+:root {
+    --paper: #f4f1e6;
+    /* manila sheet */
+    --desk: #c8c4b3;
+    /* surface the sheet sits on */
+    --ink: #17130d;
+    /* warm near-black */
+    --muted: #5f5949;
+    /* faded typewriter grey */
+    --teal: #0e6b62;
+    /* Lumon clinical teal */
+    --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", "Courier New", monospace;
+
+    /* Michroma (a wide, techy grotesque, from Google Fonts) for the big
+       section titles; Input Sans for the rest. Input isn't on Google
+       Fonts — it renders if installed locally / self-hosted, otherwise
+       falls back to IBM Plex Sans, which covers French accents. */
+    --display: "Michroma", var(--sans);
+    --title: "Input Sans", "Input Sans Narrow", var(--sans);
+}
+
+html {
+    background: var(--desk);
+}
+
+/* The whole page reads as a single sheet of paper laid on a desk. */
+body {
+    position: relative;
+    max-width: 58rem;
+    margin: 3rem auto 5rem;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    /* Exaggerated hard-edged block shadow, like a poster mockup, with a
+       soft ambient layer underneath for a little depth. */
+    box-shadow:
+        30px 30px 0 rgba(23, 19, 13, 0.6),
+        0 14px 50px rgba(23, 19, 13, 0.28);
+    font-family: var(--sans);
+    font-size: 16px;
+}
+
+/* ---- Letterhead / running header ------------------------------------ */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 2rem;
+    border-bottom: 1.5px solid var(--ink);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+}
+
+header h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+}
+
+header h1 a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+/* LinkedIn profile icon, recoloured to the teal accent via currentColor. */
+header h1 a[aria-label="LinkedIn profile"] {
+    display: inline-flex;
+    color: var(--teal);
+}
+
+header .linkedin-logo {
+    width: 1.3rem;
+    height: 1.3rem;
+    fill: currentColor;
+}
+
+/* Bureaucratic filing code on the right of the letterhead. */
+header::after {
+    content: "Doc. CV-01 · Rev. MMXXVI";
+    color: var(--teal);
+    white-space: nowrap;
+}
+
+/* ---- Document body -------------------------------------------------- */
+
+main {
+    position: relative;
+    padding: 2.5rem 3rem 1.5rem;
+    counter-reset: section;
+}
+
+/* Synthetic document title (the page's own title lives in metadata only). */
+main::before {
+    content: "Curriculum Vitæ";
+    display: block;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 1.1rem + 2vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+/* Approval stamp, cocked a few degrees like a real rubber stamp. */
+main::after {
+    content: "★ Open to Work ★";
+    position: absolute;
+    top: 2.2rem;
+    right: 3rem;
+    padding: 0.3rem 0.6rem;
+    border: 2px solid var(--teal);
+    color: var(--teal);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transform: rotate(4deg);
+    opacity: 0.85;
+}
+
+/* Section headings (About me / Work experience / Education) get a heavy
+   rule and a solid numbered tab — part IKEA step, part form section no. */
+main h1 {
+    counter-increment: section;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.75rem 0 1.25rem;
+    padding-top: 0.9rem;
+    border-top: 6px double var(--ink);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1rem, 0.85rem + 0.9vw, 1.3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+main h1::before {
+    content: counter(section, decimal-leading-zero);
+    flex: none;
+    padding: 0.2rem 0.5rem;
+    background: var(--teal);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+/* Subsection / employer / institution. */
+main h2 {
+    margin: 1.5rem 0 0.3rem;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Roles / positions — clipped mono labels with a teal index tick. */
+main h3 {
+    margin: 0.2rem 0;
+    padding-left: 0.55rem;
+    border-left: 3px solid var(--teal);
+    font-family: var(--title);
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+}
+
+/* Every plain paragraph is a "record line": dates, org links, notes. */
+main p {
+    margin: 0.6rem 0;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+}
+
+main em {
+    color: var(--ink);
+}
+
+main a {
+    color: var(--teal);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
+/* Skill / course lists as a technical grid with filled square markers. */
+main ul {
+    list-style: none;
+    margin: 0.85rem 0 1.25rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 0.4rem 1.75rem;
+}
+
+main li {
+    position: relative;
+    padding-left: 1.3rem;
+    font-family: var(--sans);
+    font-size: 0.86rem;
+    line-height: 1.35;
+}
+
+main li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.42em;
+    width: 0.55rem;
+    height: 0.55rem;
+    background: var(--ink);
+}
+
+/* Numbered lists read like miniature section headings: a teal index number
+   and the wide uppercase display font. */
+main ol {
+    list-style: none;
+    margin: 0.85rem 0 1.25rem;
+    padding: 0;
+    display: block;
+    counter-reset: item;
+}
+
+main ol li {
+    counter-increment: item;
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin: 0.5rem 0;
+    padding-left: 0;
+    font-family: var(--title);
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+main ol li::before {
+    content: counter(item, decimal-leading-zero);
+    position: static;
+    flex: none;
+    width: auto;
+    height: auto;
+    background: none;
+    color: var(--teal);
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+/* Single rules separate the work-experience entries (the double lines are
+   reserved for the section-title dividers on h1). */
+main hr {
+    border: 0;
+    border-top: 1.5px solid var(--ink);
+    margin: 1.5rem 0;
+}
+
+/* No extra gap where an entry heading directly follows its separator. */
+main hr+h2 {
+    margin-top: 0;
+}
+
+/* ---- Colophon / footer --------------------------------------------- */
+
+footer {
+    padding: 1rem 2rem 1.25rem;
+    border-top: 1.5px solid var(--ink);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+#footer-quote {
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+}
+
+footer a {
+    color: var(--teal);
+}
+
+/* ---- Narrow screens ------------------------------------------------- */
+
+@media (max-width: 40rem) {
+    body {
+        margin: 0;
+        border-left: none;
+        border-right: none;
+        box-shadow: none;
+    }
+
+    header,
+    footer {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    main {
+        padding: 1.75rem 1.25rem 1rem;
+    }
+
+    main::after {
+        display: none;
+    }
+
+    main ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---- Print: a clean sheet, no desk, no stamp ------------------------ */
+
+@media print {
+    html {
+        background: #fff;
+    }
+
+    body {
+        margin: 0;
+        max-width: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    main::after {
+        display: none;
+    }
+
+    main h1,
+    main h2 {
+        break-after: avoid;
+    }
+}

@@ -6,8 +6,8 @@ let templates_path = Path.rel [ "assets"; "templates" ]
 let binary_path = Path.from_string Sys.executable_name
 
 let copy_css =
-  let source_path = Path.rel [ "assets"; "css"; "style.css" ] in
-  Action.copy_file ~into:target_path source_path
+  Batch.iter_files (Path.rel [ "assets"; "css" ]) (fun source_path ->
+      Action.copy_file ~into:target_path source_path)
 
 let copy_images =
   let source_path = Path.rel [ "assets"; "img" ] in
@@ -84,6 +84,31 @@ let create_article source_path =
 let create_articles =
   Batch.iter_files (Path.rel [ "content"; "articles" ]) create_article
 
+let create_resume =
+  let source_path = Path.rel [ "content"; "cv"; "resume.md" ] in
+  let target_page_path = Path.rel [ ".target"; "resume.html" ] in
+  let pipeline =
+    let open Task in
+    let+ metadata, content =
+      Pipeline.read_file_with_metadata
+        (module Yocaml_yaml)
+        (module Archetype.Page)
+        source_path
+    and+ () = Pipeline.track_file binary_path
+    and+ apply_templates =
+      Pipeline.read_templates
+        (module Yocaml_jingoo)
+        Path.
+          [
+            templates_path / "resume.html";
+            templates_path / "resume-layout.html";
+          ]
+    in
+    content |> Yocaml_markdown.from_string_to_html
+    |> apply_templates ~metadata (module Archetype.Page)
+  in
+  Action.Static.write_file target_page_path pipeline
+
 let create_index =
   let source_path = Path.rel [ "content"; "index.md" ] in
   let target_page_path = Path.rel [ ".target"; "index.html" ] in
@@ -109,7 +134,7 @@ let program () =
   let open Eff in
   Action.restore_cache cache_path
   >>= copy_css >>= copy_images >>= create_404 >>= create_pages
-  >>= create_articles >>= create_index
+  >>= create_articles >>= create_index >>= create_resume
   >>= Action.store_cache cache_path
 
 let () =

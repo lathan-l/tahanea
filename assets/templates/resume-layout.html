@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="resume.css">
+</head>
+
+<body>
+    <header>
+        <h1><a href="index.html">tahanea</a>
+            <a href="https://www.linkedin.com/in/lorie-den-os" aria-label="LinkedIn profile">
+                <svg class="linkedin-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"
+                    aria-hidden="true" focusable="false">
+                    <path d="M30.47 3.05H32v25.9h-1.53Z" />
+                    <path d="M28.95 28.95h1.52v1.53h-1.52Z" />
+                    <path d="M28.95 1.52h1.52v1.53h-1.52Z" />
+                    <path d="M27.42 4.57h1.53v22.86h-1.53Z" />
+                    <path d="M3.04 30.48h25.91V32H3.04Z" />
+                    <path d="M4.57 27.43h22.85v1.52H4.57Z" />
+                    <path
+                        d="m22.85 15.24 -1.52 0 0 -1.53 -3.05 0 0 1.53 -1.52 0 0 -1.53 -3.05 0 0 9.15 3.05 0 0 -4.57 1.52 0 0 -1.53 1.53 0 0 1.53 1.52 0 0 4.57 3.05 0 0 -6.1 -1.53 0 0 -1.52z" />
+                    <path d="M7.61 13.71h3.05v9.15H7.61Z" />
+                    <path d="M7.61 9.14h3.05v3.05H7.61Z" />
+                    <path d="M4.57 3.05h22.85v1.52H4.57Z" />
+                    <path d="M3.04 0h25.91v1.52H3.04Z" />
+                    <path d="M3.04 4.57h1.53v22.86H3.04Z" />
+                    <path d="M1.52 28.95h1.52v1.53H1.52Z" />
+                    <path d="M1.52 1.52h1.52v1.53H1.52Z" />
+                    <path d="M0 3.05h1.52v25.9H0Z" />
+                </svg></a>
+        </h1>
+    </header>
+    {{safe (yocaml_body) }}
+    <footer>
+        <p id="footer-quote"></p>
+        <p>copyright 2026, created with
+            <a href="https://yocaml.github.io/tutorial/">YOCaml</a>
+            and a bit of help from Claude to write awful CSS
+        </p>
+    </footer>
+    <script>
+        (function () {
+            var qualifiers = ["a java-tainted developer", "a witch", "not a robot", "well-meaning", "an indoor person", "an aspiring cat lady", "a sims player", "a soup enthusiast", "an ocaml noob", "food motivated", "an occasional tea drinker", "a coffee addict", "likes pickles", "sings to herself", "somewhat swashbuckling", "wears funny earrings"];
+            function pick(list) {
+                return list[Math.floor(Math.random() * list.length)];
+            }
+            document.getElementById("footer-quote").textContent =
+                ["still", pick(qualifiers)].join(" ");
+        })();
+    </script>
+</body>
+
+</html>
