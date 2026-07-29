@@ -1,7 +1,6 @@
 <div class="layout layout--index home--index">
     <nav class="chapter-nav home-menu" aria-label="Site navigation">
         <ul class="home-menu__list">
-            <li class="home-menu__item home-menu__item--about"><a href="about.html">about this site</a></li>
             <li class="home-menu__item home-menu__item--resume"><a href="resume.html">my resume</a></li>
             <li class="home-menu__item home-menu__item--articles"><a href="not-a-real-page.html">articles</a></li>
             <li class="home-menu__item home-menu__item--articles"><a href="not-a-real-page.html">talks</a></li>
@@ -9,5 +8,36 @@
     </nav>
     <main>
         {{safe (yocaml_body) }}
+        <hr class="asterism" aria-hidden="true">
+        {% if has_articles %}
+        {# YOCaml only gives 3-letter month/weekday idents, so map the numeric
+        fields (day_of_week: 0=Mon..6=Sun, month: 1..12) to full names. #}
+        {% set weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
+        {% set months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"] %}
+        <ul class="article-list">
+            {% for article in articles %}
+            <li class="article-list__item">
+                <a class="article-list__link" href="{{ article.url }}">
+                    <span class="article-list__title">{{ article.title }}</span>
+                </a> <span class="article-list__meta">- first published on
+                    <time class="article-list__date" datetime="{{ article.date.repr.date }}">{{
+                        weekdays[article.date.day_of_week] }}, {{ article.date.day }} {{ months[article.date.month - 1]
+                        }}
+                        {{ article.date.year }}</time></span>
+
+                {%- if article.has_tags -%}
+                <ul class="tag-list">
+                    {%- for tag in article.tags -%}
+                    <li class="tag">{{ tag }}</li>
+                    {%- endfor -%}
+                </ul>
+                {%- endif -%}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>There are no articles yet.</p>
+        {% endif %}
     </main>
 </div>

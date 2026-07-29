@@ -2,41 +2,18 @@ open Yocaml
 
 let cache_path = Path.rel [ ".cache" ]
 let target_path = Path.rel [ ".target" ]
+let articles = Path.rel [ "content"; "articles" ]
 let templates_path = Path.rel [ "assets"; "templates" ]
 let binary_path = Path.from_string Sys.executable_name
 
 let copy_css =
-  Batch.iter_files (Path.rel [ "assets"; "css" ]) (fun source_path ->
-      Action.copy_file ~into:target_path source_path)
+  Batch.iter_files
+    (Path.rel [ "assets"; "css" ])
+    (fun source_path -> Action.copy_file ~into:target_path source_path)
 
 let copy_images =
   let source_path = Path.rel [ "assets"; "img" ] in
   Action.copy_directory ~into:target_path source_path
-
-let create_page source_path =
-  let target_page_path =
-    source_path |> Path.change_extension "html" |> Path.move ~into:target_path
-  in
-  let pipeline =
-    let open Task in
-    let+ metadata, content =
-      Pipeline.read_file_with_metadata
-        (module Yocaml_yaml)
-        (module Archetype.Page)
-        source_path
-    and+ () = Pipeline.track_file binary_path
-    and+ apply_templates =
-      Pipeline.read_templates
-        (module Yocaml_jingoo)
-        Path.[ templates_path / "page.html"; templates_path / "layout.html" ]
-    in
-    content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Archetype.Page)
-  in
-  Action.Static.write_file target_page_path pipeline
-
-let create_pages =
-  Batch.iter_files (Path.rel [ "content"; "pages" ]) create_page
 
 let create_404 =
   let source_path = Path.rel [ "content"; "404.md" ] in
@@ -61,7 +38,9 @@ let create_404 =
 
 let create_article source_path =
   let target_article_path =
-    source_path |> Path.change_extension "html" |> Path.move ~into:target_path
+    source_path
+    |> Path.change_extension "html"
+    |> Path.move ~into:Path.(target_path / "articles")
   in
   let pipeline =
     let open Task in
@@ -74,15 +53,14 @@ let create_article source_path =
     and+ apply_templates =
       Pipeline.read_templates
         (module Yocaml_jingoo)
-        Path.[ templates_path / "article.html"; templates_path / "layout.html" ]
+        Path.[ templates_path / "page.html"; templates_path / "layout.html" ]
     in
     content |> Yocaml_markdown.from_string_to_html
     |> apply_templates ~metadata (module Archetype.Article)
   in
   Action.Static.write_file target_article_path pipeline
 
-let create_articles =
-  Batch.iter_files (Path.rel [ "content"; "articles" ]) create_article
+let create_articles = Batch.iter_files articles create_article
 
 let create_resume =
   let source_path = Path.rel [ "content"; "cv"; "resume.md" ] in
@@ -109,6 +87,17 @@ let create_resume =
   in
   Action.Static.write_file target_page_path pipeline
 
+let compute_link source =
+  let into = Path.abs [ "articles" ] in
+  source |> Path.move ~into |> Path.change_extension "html"
+
+let fetch_articles =
+  Archetype.Articles.fetch
+    ~where:(fun p -> Path.has_extension "md" p)
+    ~compute_link
+    (module Yocaml_yaml)
+    (Path.rel [ "content"; "articles" ])
+
 let create_index =
   let source_path = Path.rel [ "content"; "index.md" ] in
   let target_page_path = Path.rel [ ".target"; "index.html" ] in
@@ -124,17 +113,18 @@ let create_index =
       Pipeline.read_templates
         (module Yocaml_jingoo)
         Path.[ templates_path / "index.html"; templates_path / "layout.html" ]
-    in
+    and+ articles = fetch_articles in
+    let metadata = Archetype.Articles.with_page ~page:metadata ~articles in
     content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Archetype.Page)
+    |> apply_templates ~metadata (module Archetype.Articles)
   in
   Action.Static.write_file target_page_path pipeline
 
 let program () =
   let open Eff in
   Action.restore_cache cache_path
-  >>= copy_css >>= copy_images >>= create_404 >>= create_pages
-  >>= create_articles >>= create_index >>= create_resume
+  >>= copy_css >>= copy_images >>= create_404 >>= create_articles
+  >>= create_index >>= create_resume
   >>= Action.store_cache cache_path
 
 let () =

@@ -3,6 +3,28 @@
         <p class="chapter-nav__title">this is a work in progress</p>
     </nav>
     <main>
+        {%- if date or has_page_tags -%}
+        <header class="page-header">
+            {%- if date -%}
+            {# YOCaml only gives 3-letter month/weekday idents, so map the numeric
+            fields (day_of_week: 0=Mon..6=Sun, month: 1..12) to full names. #}
+            {% set weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
+            {% set months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+            "October", "November", "December"] %}
+            <p class="page-header__date">First published on
+                <time datetime="{{ date.repr.date }}">{{ weekdays[date.day_of_week] }}, {{ date.day }} {{
+                    months[date.month - 1] }} {{ date.year }}</time>
+            </p>
+            {%- endif -%}
+            {%- if has_page_tags -%}
+            <ul class="tag-list">
+                {%- for tag in tags -%}
+                <li class="tag">{{ tag }}</li>
+                {%- endfor -%}
+            </ul>
+            {%- endif -%}
+        </header>
+        {%- endif -%}
         {{safe (yocaml_body) }}
     </main>
 </div>
