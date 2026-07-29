@@ -1,8 +1,13 @@
 /* ==========================================================================
    Personal blog — plain, old-print / pocket-book styling
+
+   Loaded after reset.css (see the page templates), which already handles the
+   base resets: box-sizing, margin zeroing, min-height, font smoothing, and
+   the `ul[class]/ol[class]` list reset. This file only adds the look.
    ========================================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+DW+Pica+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Homemade+Apple&family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+DW+Pica+SC&display=swap");
+
 
 /* --------------------------------------------------------------------------
    1. Variables
@@ -19,6 +24,12 @@
   --link-hover: #000000;
   --rule: #cbbf9e;
   /* faint lines / borders */
+  --tag-bg: #6b4423;
+  /* coffee-stain brown for tag boxes */
+  --code-bg: #2b2621;
+  /* dark panel behind inline and block code */
+  --code-ink: #ece4d0;
+  /* light, page-toned code text */
 
   --footer-bg: #161310;
   /* near-black block at the bottom */
@@ -29,6 +40,7 @@
 
   --body-font: "IM Fell DW Pica", Georgia, "Times New Roman", serif;
   --head-font: "IM Fell DW Pica SC", "IM Fell DW Pica", Georgia, serif;
+
   --measure: 38rem;
   /* comfortable reading width */
   --base-size: 20px;
@@ -42,14 +54,8 @@
 }
 
 /* --------------------------------------------------------------------------
-   2. Base / reset
+   2. Base
    -------------------------------------------------------------------------- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 html {
   font-size: var(--base-size);
   /* let decorations bleed off the right edge without adding a horizontal
@@ -58,28 +64,30 @@ html {
 }
 
 body {
-  margin: 0;
   padding: 2.5rem 1.25rem 0;
   background-color: var(--page-bg);
   color: var(--ink);
-  /* anchor the decorative coffee-stain pseudo-element */
-  position: relative;
   font-family: var(--body-font);
   line-height: var(--line);
-  /* keep text left-aligned and easy to read */
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  /* fill the viewport so the footer block sits at the bottom */
+  /* anchor the decorative stain pseudo-element */
+  position: relative;
+  /* fill the viewport as a column so the footer block sits at the bottom */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* decorative top-right stain: rotated 45° to the left and pushed off the
-   right edge of the page near the top. z-index:-1 keeps it behind the
-   text; the html `overflow-x: clip` trims the part beyond the frame.
-   The image itself is chosen per page template below, so each kind of
-   page can wear its own decoration. */
+/* --------------------------------------------------------------------------
+   2b. Decorative top-right stain
+
+   Rotated 45° and pushed off the right edge near the top. z-index:-1 keeps
+   it behind the text; the html `overflow-x: clip` trims the overflow.
+
+   The default is a coffee stain. Each page template stamps a class on its
+   root element (see assets/templates/*.html), so a template can override the
+   decoration by keying off that class — as the article rule below does.
+   -------------------------------------------------------------------------- */
 body::before {
   content: "";
   position: absolute;
@@ -87,7 +95,6 @@ body::before {
   right: -7rem;
   width: 22rem;
   height: 22rem;
-  /* default decoration; individual templates override the image below */
   background-image: url("img/toppng.com-coffee-stain-transparent-2450x2478.png");
   background-repeat: no-repeat;
   background-size: contain;
@@ -97,42 +104,18 @@ body::before {
   z-index: -1;
 }
 
-/* --- per-template decoration ------------------------------------------
-   Each page template stamps a distinguishing class on its root element
-   (see assets/templates/*.html). We key the top-right decoration off it
-   so every kind of page can carry a different background. To change one
-   template's decoration, edit only its rule here. */
-
-/* article pages — ink splatter */
-body:has(.layout--article)::before {
+/* content pages — ink splatter anchored to the top-left corner so it scrolls
+   away once the reader moves down */
+body:has(.layout--page)::before {
   background-image: url("img/pngkey.com-color-splatter-png-461231.png");
-  /* anchor to the top of the page so it scrolls away (stays hidden) once
-     the reader moves down; top:0/right:0 still land on the viewport corner
-     since body spans the full width with no border */
-  position: absolute;
-  width: 44rem;
-  height: 44rem;
   top: 0;
   left: 0;
-  /* the image is `contain`ed inside the 44rem box; without this it defaults
-     to the top-left of that box and floats far from the edge */
+  right: auto;
+  width: 44rem;
+  height: 44rem;
+  /* the image is `contain`ed in the 44rem box; pin it to that box's corner */
   background-position: left top;
   transform: none;
-}
-
-/* standalone pages (e.g. about) — coffee stain */
-body:has(.layout--page)::before {
-  background-image: url("img/toppng.com-coffee-stain-transparent-2450x2478.png");
-}
-
-/* home / index */
-body:has(.home--index)::before {
-  background-image: url("img/toppng.com-coffee-stain-transparent-2450x2478.png");
-}
-
-/* 404 */
-body:has(.home--404)::before {
-  background-image: url("img/toppng.com-coffee-stain-transparent-2450x2478.png");
 }
 
 /* --------------------------------------------------------------------------
@@ -189,13 +172,11 @@ body:has(.home--404)::before {
   text-decoration: underline;
 }
 
-/* right column — the reading surface, lifted above the page by a soft
-   shadow that shows only on its top and left edges */
+/* right column — the reading surface */
 main {
   flex: 1 1 auto;
   min-width: 0;
   max-width: var(--measure);
-  padding: 0;
   background-color: var(--page-bg);
 }
 
@@ -206,50 +187,99 @@ main> :first-child {
   margin-top: 0;
 }
 
-.container {
-  max-width: var(--measure);
-  margin: 0 auto;
-}
-
 /* --------------------------------------------------------------------------
-   3b. Home layout: a single centred column, no chapter navigation
+   3b. Home / 404 layout: a single centred column, no chapter navigation
    -------------------------------------------------------------------------- */
-/* shares the same container width as the header so the list lines up with
-   the title; no lift-shadow since there is no navigation column behind it */
+/* shares the same width as the header so the text lines up with the title;
+   left-aligned from the nav column's left edge as on article pages */
 main.home {
-  /* same container + centring as .layout, with no left padding, so the
-     text's left edge lands on the nav column's left edge (as on article
-     pages). The text then flows left-aligned from there. */
   width: 100%;
   max-width: calc(var(--measure) + var(--nav-width) + var(--gutter));
   margin: 0 auto;
   padding: 0.25rem 0 3rem;
   background: none;
-  box-shadow: none;
 }
 
-.page-list {
+/* --------------------------------------------------------------------------
+   3c. Home menu: the left-column links on the index page
+
+   Built on top of .chapter-nav (sticky column, hover underline); the menu
+   column carries no splatter, and each link gets its own larger size.
+   -------------------------------------------------------------------------- */
+.home-menu {
+  background-image: none;
+}
+
+.home-menu__list {
   list-style: none;
-  margin: 1.75rem 0 0;
+  margin: 0;
   padding: 0;
+  /* keep the menu in view while the welcome text scrolls */
+  position: sticky;
+  top: 1.5rem;
 }
 
-.page-list li {
-  margin-bottom: 0.6rem;
+.home-menu__item {
+  margin-bottom: 1rem;
 }
 
-.page-list a {
-  font-family: var(--head-font);
-  font-size: 1.2rem;
-  text-decoration: none;
+.home-menu a {
+  font-size: 1.3rem;
 }
 
-.page-list a:hover,
-.page-list a:focus {
-  text-decoration: underline;
+/* --------------------------------------------------------------------------
+   3d. Social links — a horizontal row of stained icons in the footer
+   -------------------------------------------------------------------------- */
+/* `ul.home-social` (not `.home-social`) so this beats reset.css's
+   `ul[class] { padding: 0 }`, which would otherwise strip the left padding
+   the sibling footer paragraphs get and pull the row left. */
+ul.home-social {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
+  gap: 0;
+  /* same left padding as the footer text so the row starts at the text edge */
+  padding-left: 1.25rem;
+  /* pull the quote line below up close to the icons */
+  margin-bottom: -0.3rem;
 }
 
-/* on narrow screens the columns stack and the lift is dropped */
+/* cancel the first icon's left padding so its glyph lines up with the
+   left edge of the footer text */
+.home-social__item:first-child {
+  margin-left: -0.3rem;
+}
+
+.home-social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--page-bg);
+  /* light icon on the dark footer block */
+  padding: 0.3rem;
+  transition: opacity 0.15s ease;
+}
+
+.home-social__link:hover,
+.home-social__link:focus-visible {
+  opacity: 0.8;
+}
+
+.home-social__link:visited {
+  color: var(--page-bg);
+}
+
+.home-social__icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   3e. Narrow screens — stack the columns
+   -------------------------------------------------------------------------- */
 @media (max-width: 46rem) {
   .layout {
     flex-direction: column;
@@ -268,7 +298,6 @@ main.home {
 
   main {
     padding: 0.25rem 0 2rem;
-    box-shadow: none;
   }
 }
 
@@ -307,8 +336,8 @@ h4 {
   font-size: 1.15rem;
 }
 
-/* article sub-headings: kept lowercase like the rest (base rule), but
-   heavier and in dark sepia rather than near-black */
+/* article sub-headings: kept lowercase like the rest, but heavier and in
+   dark sepia rather than near-black */
 .layout h3,
 .layout h4 {
   font-weight: 700;
@@ -323,7 +352,6 @@ small {
   color: var(--ink-soft);
 }
 
-/* Emphasis kept classic */
 strong {
   font-weight: 700;
 }
@@ -347,13 +375,13 @@ a:focus {
   text-decoration-thickness: 2px;
 }
 
+/* pin visited links to the same sepia so they don't fade to the browser default */
 a:visited {
   color: var(--link);
 }
 
-/* links inside headings read as the heading, not as links: same colour,
-   no underline (a subtle underline appears only on hover/focus for
-   affordance) */
+/* links inside headings read as the heading, not as links: same colour and
+   no underline (a subtle underline appears only on hover/focus for affordance) */
 h1 a,
 h2 a,
 h3 a,
@@ -394,19 +422,33 @@ pre {
   font-size: 0.9em;
 }
 
+/* multiline code blocks — dark panel with light text */
 pre {
-  background: rgba(0, 0, 0, 0.04);
+  background: var(--code-bg);
+  color: var(--code-ink);
   padding: 1rem;
   overflow-x: auto;
-  border: 1px solid var(--rule);
+  border-radius: 0.25rem;
 }
 
+/* inline one-liner code — same dark-on-light treatment, boxed inline */
 code {
+  background: var(--code-bg);
+  color: var(--code-ink);
   padding: 0.1em 0.3em;
+  border-radius: 0.2rem;
+}
+
+/* code sitting inside a block already has the panel — don't box it again */
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
 }
 
 /* --------------------------------------------------------------------------
-   8. Rules, images, misc
+   8. Rules & images
    -------------------------------------------------------------------------- */
 hr {
   border: 0;
@@ -422,24 +464,23 @@ img {
 /* --------------------------------------------------------------------------
    9. Header & footer
    -------------------------------------------------------------------------- */
-/* The header shares the exact container geometry of .layout — same
-   max-width and the same centring — so its left edge lands on the
-   .layout's left edge, which is where the left navigation column starts.
-   The title carries no left padding, so its left margin equals the
-   nav column's left margin by construction. */
-header {
-  /* width:100% is what makes it fill up to max-width (like .layout);
-     without it, this flex item would shrink to the title and the auto
-     margins would centre it. */
+/* The header shares .layout's geometry (same max-width, same centring) so its
+   left edge lands where the left navigation column starts.
+   Scoped to `body > header` (the site title bar, a direct child of body) so
+   these styles — including the separating rule below — don't leak into the
+   nested `.page-header` inside <main>. */
+body>header {
+  /* width:100% makes it fill up to max-width like .layout; without it the
+     flex item would shrink to the title and the auto margins would centre it */
   width: 100%;
   max-width: calc(var(--measure) + var(--nav-width) + var(--gutter));
   margin: 0 auto 2.5rem;
   position: relative;
 }
 
-/* separating rule: thicker than a border, extending a little past the
-   header on each side and fading into the page background at both ends */
-header::after {
+/* separating rule: extends a little past the header on each side and fades
+   into the page background at both ends */
+body>header::after {
   content: "";
   position: absolute;
   left: -1rem;
@@ -453,19 +494,18 @@ header::after {
       transparent);
 }
 
-header h1 {
+body>header h1 {
   margin: 0;
   padding: 1.75rem 0;
-  /* non-small-caps face so the title stays genuinely lowercase */
   font-family: var(--body-font);
+  /* non-small-caps face, genuinely lowercase */
   text-transform: lowercase;
   font-size: 3.5rem;
   letter-spacing: 0.01em;
 }
 
-/* Full-width dark block covering the bottom of the page.
-   The negative margin lets it break out of the body padding
-   and span edge to edge. */
+/* full-width dark block at the bottom; the negative margin breaks it out of
+   the body padding to span edge to edge */
 footer {
   margin-top: 3rem;
   width: 100vw;
@@ -473,8 +513,7 @@ footer {
   background-color: var(--footer-bg);
   color: var(--footer-ink);
   font-size: 0.9rem;
-  /* vertical breathing room lives on the block, so it isn't repeated
-     between each child */
+  /* vertical breathing room lives on the block, not repeated per child */
   padding: 2rem 0;
 }
 
@@ -500,30 +539,72 @@ footer a:focus {
   color: #ffffff;
 }
 
-/* --------------------------------------------------------------------------
-   10. Embedded video (YouTube) snippet
-   -------------------------------------------------------------------------- */
-.video {
-  margin: 1.5rem 0;
-  max-width: var(--measure);
+/* keep footer links light once visited (the global `a:visited` would otherwise
+   darken them to sepia, near-invisible on the dark block) */
+footer a:visited {
+  color: var(--footer-link);
 }
 
-.video figcaption {
-  margin-top: 0.4rem;
-  font-family: var(--head-font);
-  font-size: 0.95rem;
+/* the "- first published on <date>" note, in a handwritten face */
+.article-list__meta {
+  font-family: "Homemade Apple", cursive;
+  /* Homemade Apple runs large and tall, so scale it down and give it room */
+  font-size: 0.7rem;
+  line-height: 1.6;
+}
+
+/* page/article header — published date and tags shown above the body */
+.page-header {
+  margin: 0 0 2rem;
+}
+
+.page-header__date {
+  margin: 0 0 0.6rem;
+  font-family: "Homemade Apple", cursive;
+  font-size: 0.7rem;
   color: var(--ink-soft);
 }
 
-/* little red play triangle so it reads unmistakably as a YouTube video */
-.video figcaption::before {
-  content: "";
+/* --------------------------------------------------------------------------
+   Article tags — small coffee-brown boxes with page-toned text
+   -------------------------------------------------------------------------- */
+.tag-list {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.tag {
   display: inline-block;
-  width: 0;
-  height: 0;
-  margin-right: 0.5rem;
-  border-style: solid;
-  border-width: 0.35rem 0 0.35rem 0.6rem;
-  border-color: transparent transparent transparent #c00;
-  vertical-align: middle;
+  background-color: var(--tag-bg);
+  color: var(--page-bg);
+  font-family: var(--body-font);
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   Asterism — vintage three-asterisk section break (a "dinkus"), replacing the
+   default horizontal rule with spaced-out asterisks drawn via a pseudo-element
+   -------------------------------------------------------------------------- */
+.asterism {
+  border: 0;
+  height: auto;
+  margin: 2.5rem 0;
+  text-align: center;
+  line-height: 1;
+}
+
+.asterism::before {
+  content: "\2042";
+  /* ⁂ asterism */
+  color: var(--ink-soft);
+  font-family: var(--head-font);
+  font-size: 1.6rem;
 }
