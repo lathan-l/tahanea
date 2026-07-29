@@ -16,7 +16,8 @@ let base_url =
   | Some given ->
       let trimmed = String.trim given in
       let with_leading =
-        if String.starts_with ~prefix:"/" trimmed then trimmed else "/" ^ trimmed
+        if String.starts_with ~prefix:"/" trimmed then trimmed
+        else "/" ^ trimmed
       in
       if String.ends_with ~suffix:"/" with_leading then with_leading
       else with_leading ^ "/"
@@ -63,7 +64,7 @@ let create_404 =
         Path.[ templates_path / "404tpl.html"; templates_path / "layout.html" ]
     in
     content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Archetype.Page)
+    |> apply_templates ~metadata (module Page_with_base)
   in
   Action.Static.write_file target_page_path pipeline
 
@@ -87,7 +88,7 @@ let create_article source_path =
         Path.[ templates_path / "page.html"; templates_path / "layout.html" ]
     in
     content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Archetype.Article)
+    |> apply_templates ~metadata (module Article_with_base)
   in
   Action.Static.write_file target_article_path pipeline
 
@@ -114,12 +115,12 @@ let create_resume =
           ]
     in
     content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Archetype.Page)
+    |> apply_templates ~metadata (module Page_with_base)
   in
   Action.Static.write_file target_page_path pipeline
 
 let compute_link source =
-  let into = Path.abs [ "articles" ] in
+  let into = Path.abs (base_segments @ [ "articles" ]) in
   source |> Path.move ~into |> Path.change_extension "html"
 
 let fetch_articles =
@@ -147,7 +148,7 @@ let create_index =
     and+ articles = fetch_articles in
     let metadata = Archetype.Articles.with_page ~page:metadata ~articles in
     content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Archetype.Articles)
+    |> apply_templates ~metadata (module Articles_with_base)
   in
   Action.Static.write_file target_page_path pipeline
 

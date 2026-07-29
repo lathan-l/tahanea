@@ -23,7 +23,11 @@ jobs:
 
       - run: opam install . --deps-only --with-doc --with-test
       - run: opam exec -- dune build --profile=release
+      # GitHub Pages serves this project site under /tahanea/, so absolute URLs
+      # in the generated HTML need that prefix (locally it defaults to /).
       - run: opam exec -- dune exec bin/site.exe -- build
+        env:
+          SITE_BASE_URL: /tahanea/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
