@@ -4,6 +4,12 @@
 
 @import url("https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+DW+Pica+SC&display=swap");
 
+/* Fonts offered to the left home menu. Add more families here (and to the
+   --font-menu-* variables below) if you want other choices per section. */
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&family=Pirata+One&family=Michroma&display=swap");
+
+
+
 /* --------------------------------------------------------------------------
    1. Variables
    -------------------------------------------------------------------------- */
@@ -39,6 +45,7 @@
   /* left chapter-navigation column */
   --gutter: 3rem;
   /* breathing room around the reading column */
+
 }
 
 /* --------------------------------------------------------------------------
@@ -228,25 +235,76 @@ main.home {
   box-shadow: none;
 }
 
-.page-list {
+/* --------------------------------------------------------------------------
+   3c. Home menu: the left-column links on the index page
+   -------------------------------------------------------------------------- */
+/* built on top of .chapter-nav (sticky column, hover underline, bottom
+   splatter); adds a per-link font so each section can wear its own face */
+/* the home menu column carries no splatter (unlike article chapter-navs) */
+.home-menu {
+  background-image: none;
+}
+
+.home-menu__list {
   list-style: none;
-  margin: 1.75rem 0 0;
+  margin: 0;
   padding: 0;
+  /* keep the menu in view while the welcome text scrolls */
+  position: sticky;
+  top: 1.5rem;
 }
 
-.page-list li {
-  margin-bottom: 0.6rem;
+.home-menu__item {
+  margin-bottom: 1rem;
 }
 
-.page-list a {
-  font-family: var(--head-font);
-  font-size: 1.2rem;
+.home-menu a {
+  font-size: 1.3rem;
   text-decoration: none;
 }
 
-.page-list a:hover,
-.page-list a:focus {
-  text-decoration: underline;
+/* social links, a horizontal row of stained icons in the footer.
+   `ul.home-social` (not `.home-social`) so this beats the reset's
+   `ul[class] { padding: 0 }`, which would otherwise strip the left padding
+   the sibling footer paragraphs get from `footer > *` and pull the row left. */
+ul.home-social {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
+  gap: 0;
+  /* same left padding as the footer text so the row starts at the text edge */
+  padding-left: 1.25rem;
+  /* pull the quote line below up close to the icons */
+  margin-bottom: -0.3rem;
+}
+
+/* cancel the first icon's left padding so its glyph lines up with the
+   left edge of the footer text */
+.home-social__item:first-child {
+  margin-left: -0.3rem;
+}
+
+.home-social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* light icon on the dark footer block */
+  color: var(--page-bg);
+  transition: opacity 0.15s ease;
+  padding: 0.3rem;
+}
+
+.home-social__link:hover,
+.home-social__link:focus-visible {
+  opacity: 0.8;
+}
+
+.home-social__icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  display: block;
 }
 
 /* on narrow screens the columns stack and the lift is dropped */
@@ -500,30 +558,12 @@ footer a:focus {
   color: #ffffff;
 }
 
-/* --------------------------------------------------------------------------
-   10. Embedded video (YouTube) snippet
-   -------------------------------------------------------------------------- */
-.video {
-  margin: 1.5rem 0;
-  max-width: var(--measure);
+/* keep footer links light once visited (the global `a:visited` rule would
+   otherwise darken them to sepia, near-invisible on the dark block) */
+footer a:visited {
+  color: var(--footer-link);
 }
 
-.video figcaption {
-  margin-top: 0.4rem;
-  font-family: var(--head-font);
-  font-size: 0.95rem;
-  color: var(--ink-soft);
-}
-
-/* little red play triangle so it reads unmistakably as a YouTube video */
-.video figcaption::before {
-  content: "";
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-right: 0.5rem;
-  border-style: solid;
-  border-width: 0.35rem 0 0.35rem 0.6rem;
-  border-color: transparent transparent transparent #c00;
-  vertical-align: middle;
+.home-social__link:visited {
+  color: var(--page-bg);
 }

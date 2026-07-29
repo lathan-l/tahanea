@@ -1,10 +1,13 @@
-<main class="home home--index">
-    {{safe (yocaml_body) }}
-    <ul class="page-list">
-        <li><a href="resume.html">my resume</a></li>
-        <li><a href="about.html">about this site</a></li>
-        <li><a href="2025-01-31-soup-enthusiasm.html">the sims are something else</a></li>
-        <li><a href="2025-09-13-ocaml-noob.html">ocaml noob</a></li>
-        <li><a href="not-a-real-page.html">try this!</a></li>
-    </ul>
-</main>
+<div class="layout layout--index home--index">
+    <nav class="chapter-nav home-menu" aria-label="Site navigation">
+        <ul class="home-menu__list">
+            <li class="home-menu__item home-menu__item--about"><a href="about.html">about this site</a></li>
+            <li class="home-menu__item home-menu__item--resume"><a href="resume.html">my resume</a></li>
+            <li class="home-menu__item home-menu__item--articles"><a href="not-a-real-page.html">articles</a></li>
+            <li class="home-menu__item home-menu__item--articles"><a href="not-a-real-page.html">talks</a></li>
+        </ul>
+    </nav>
+    <main>
+        {{safe (yocaml_body) }}
+    </main>
+</div>
