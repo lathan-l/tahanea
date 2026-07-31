@@ -6,37 +6,15 @@ let articles = Path.rel [ "content"; "articles" ]
 let templates_path = Path.rel [ "assets"; "templates" ]
 let binary_path = Path.from_string Sys.executable_name
 
-(* GitHub Pages serves a project site under /<repo>/, not /, so root-relative
-   URLs such as "/style.css" 404 there. Every absolute URL is therefore built
-   from [base_url], which the deploy workflow sets to "/tahanea/" and which
-   stays "/" for the local dev server. *)
-let base_url =
-  match Sys.getenv_opt "SITE_BASE_URL" with
-  | None | Some "" -> "/"
-  | Some given ->
-      let trimmed = String.trim given in
-      let with_leading =
-        if String.starts_with ~prefix:"/" trimmed then trimmed
-        else "/" ^ trimmed
-      in
-      if String.ends_with ~suffix:"/" with_leading then with_leading
-      else with_leading ^ "/"
+(* The site is served at the root of its own domain (www.tahanea.net, see the
+   CNAME file), so absolute URLs are plain root-relative paths: "/style.css",
+   "/articles/…". The local dev server also serves the target at /, so nothing
+   needs rewriting between the two. *)
 
-let base_segments =
-  base_url |> String.split_on_char '/' |> List.filter (fun s -> s <> "")
-
-(* Adds [base_url] to the variables every template can see, on top of whatever
-   the wrapped archetype already exposes. *)
-module With_base (M : Required.DATA_INJECTABLE) :
-  Required.DATA_INJECTABLE with type t = M.t = struct
-  type t = M.t
-
-  let normalize value = ("base_url", Data.string base_url) :: M.normalize value
-end
-
-module Page_with_base = With_base (Archetype.Page)
-module Article_with_base = With_base (Archetype.Article)
-module Articles_with_base = With_base (Archetype.Articles)
+(* GitHub Pages reads the custom domain from a CNAME file in the *published*
+   tree, and the deploy replaces that tree wholesale, so CNAME has to be part
+   of the build output or the domain gets dropped on the next push. *)
+let copy_cname = Action.copy_file ~into:target_path (Path.rel [ "CNAME" ])
 
 let copy_css =
   Batch.iter_files
@@ -64,7 +42,7 @@ let create_404 =
         Path.[ templates_path / "404tpl.html"; templates_path / "layout.html" ]
     in
     content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Page_with_base)
+    |> apply_templates ~metadata (module Archetype.Page)
   in
   Action.Static.write_file target_page_path pipeline
 
@@ -88,7 +66,7 @@ let create_article source_path =
         Path.[ templates_path / "page.html"; templates_path / "layout.html" ]
     in
     content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Article_with_base)
+    |> apply_templates ~metadata (module Archetype.Article)
   in
   Action.Static.write_file target_article_path pipeline
 
@@ -115,12 +93,12 @@ let create_resume =
           ]
     in
     content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Page_with_base)
+    |> apply_templates ~metadata (module Archetype.Page)
   in
   Action.Static.write_file target_page_path pipeline
 
 let compute_link source =
-  let into = Path.abs (base_segments @ [ "articles" ]) in
+  let into = Path.abs [ "articles" ] in
   source |> Path.move ~into |> Path.change_extension "html"
 
 let fetch_articles =
@@ -148,14 +126,14 @@ let create_index =
     and+ articles = fetch_articles in
     let metadata = Archetype.Articles.with_page ~page:metadata ~articles in
     content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Articles_with_base)
+    |> apply_templates ~metadata (module Archetype.Articles)
   in
   Action.Static.write_file target_page_path pipeline
 
 let program () =
   let open Eff in
   Action.restore_cache cache_path
-  >>= copy_css >>= copy_images >>= create_404 >>= create_articles
+  >>= copy_cname >>= copy_css >>= copy_images >>= create_404 >>= create_articles
   >>= create_index >>= create_resume
   >>= Action.store_cache cache_path
 
