@@ -461,6 +461,14 @@ img {
   height: auto;
 }
 
+/* Markdown turns an image on its own line into a <p> wrapping nothing but the
+   <img>; centre those standalone pictures, leaving images that sit in a run of
+   prose alone. The reset makes every image display:block, so text-align on the
+   paragraph would do nothing — auto inline margins are what centre a block. */
+main p:has(> img:only-child)>img {
+  margin-inline: auto;
+}
+
 /* --------------------------------------------------------------------------
    9. Header & footer
    -------------------------------------------------------------------------- */
