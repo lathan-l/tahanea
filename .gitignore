@@ -12,6 +12,9 @@
 *.cmxs
 *.cmxa
 
+# work in progress
+.wip/
+
 # ocamlbuild working directory
 _build/
 .target/
