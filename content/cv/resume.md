@@ -63,7 +63,7 @@ In my free time, I enjoy tinkering with this website, painting, drinking coffee,
 
 10.2024 - 07.2026
 ### Product Tech Lead
-Over the course of 18+ months, I managed multiple teams composed of 2 to 5 junior to senior developers, led performance reviews, gave feedbacks in French and English, and contributed to product design decisions about **ontology and rule-based NLG features**. I relentlessly advocated for **automation**, **Domain Driven Design** and **good development practices**. 
+Over the course of 18+ months, I managed two teams composed of 2 to 5 junior to senior developers, led performance reviews, gave feedbacks in French and English, facilitated many meetings, and contributed to product design decisions about **ontology and rule-based NLG features**. I relentlessly advocated for **automation**, **Domain Driven Design** and **good development practices**. 
 
 Q1: joined an existing team of 8 as a **senior developer**. Developed NLG code snippets to write about Time-To-Event CSR data, and designed a new snippet framework to **reduce tech debt** and make them more structured and scalable, using linguistics and text generation domain concepts to create a modular pipeline.
 
