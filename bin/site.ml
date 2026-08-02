@@ -108,6 +108,57 @@ let fetch_articles =
     (module Yocaml_yaml)
     (Path.rel [ "content"; "articles" ])
 
+let create_articles_index =
+  let source_path = Path.rel [ "content"; "articles.md" ] in
+  let target_page_path = Path.rel [ ".target"; "articles.html" ] in
+  let pipeline =
+    let open Task in
+    let+ metadata, content =
+      Pipeline.read_file_with_metadata
+        (module Yocaml_yaml)
+        (module Archetype.Page)
+        source_path
+    and+ () = Pipeline.track_file binary_path
+    and+ apply_templates =
+      Pipeline.read_templates
+        (module Yocaml_jingoo)
+        Path.
+          [
+            templates_path / "articles_index.html";
+            templates_path / "layout.html";
+          ]
+    and+ articles = fetch_articles in
+    let metadata = Archetype.Articles.with_page ~page:metadata ~articles in
+    content |> Yocaml_markdown.from_string_to_html
+    |> apply_templates ~metadata (module Archetype.Articles)
+  in
+  Action.Static.write_file target_page_path pipeline
+
+let create_talks_index =
+  let source_path = Path.rel [ "content"; "talks.md" ] in
+  let target_page_path = Path.rel [ ".target"; "talks.html" ] in
+  let pipeline =
+    let open Task in
+    let+ metadata, content =
+      Pipeline.read_file_with_metadata
+        (module Yocaml_yaml)
+        (module Archetype.Page)
+        source_path
+    and+ () = Pipeline.track_file binary_path
+    and+ apply_templates =
+      Pipeline.read_templates
+        (module Yocaml_jingoo)
+        Path.
+          [
+            templates_path / "talks_index.html"; templates_path / "layout.html";
+          ]
+    and+ articles = fetch_articles in
+    let metadata = Archetype.Articles.with_page ~page:metadata ~articles in
+    content |> Yocaml_markdown.from_string_to_html
+    |> apply_templates ~metadata (module Archetype.Articles)
+  in
+  Action.Static.write_file target_page_path pipeline
+
 let create_index =
   let source_path = Path.rel [ "content"; "index.md" ] in
   let target_page_path = Path.rel [ ".target"; "index.html" ] in
@@ -134,7 +185,8 @@ let program () =
   let open Eff in
   Action.restore_cache cache_path
   >>= copy_cname >>= copy_css >>= copy_images >>= create_404 >>= create_articles
-  >>= create_index >>= create_resume
+  >>= create_articles_index >>= create_talks_index >>= create_index
+  >>= create_resume
   >>= Action.store_cache cache_path
 
 let () =
