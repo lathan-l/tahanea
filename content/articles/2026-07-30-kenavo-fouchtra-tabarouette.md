@@ -1,7 +1,7 @@
 ---
 title: "Martine in the Webring"
 date: 2026-07-30
-tags: ["grandmother", "cyberspace", "restorative art"]
+tags: ["cyberspace", "restorative art", "programming"]
 ---
 
 # We're putting grandma online again
