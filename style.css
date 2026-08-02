@@ -137,11 +137,11 @@ body:has(.layout--page)::before {
   padding: 0.25rem 1.5rem 2rem 0;
   font-family: var(--head-font);
   font-size: 0.95rem;
-  /* decorative splatter resting at the bottom of the left column */
-  background-image: url("img/toppng.com-stains-splatter-png-coffee-stain-transparent-949x646.png");
+  /* decorative dried flower resting at the bottom of the left column */
+  background-image: url("img/vecteezy_isolated-pressed-and-dried-blue-flower-aesthetic_43274652.png");
   background-repeat: no-repeat;
-  background-position: bottom left;
-  background-size: 11rem auto;
+  background-position: bottom;
+  background-size: auto 12rem;
 }
 
 .chapter-nav__title {
@@ -221,6 +221,11 @@ main.home {
 
 .home-menu__item {
   margin-bottom: 1rem;
+}
+
+.home-menu__selected-item {
+  margin-bottom: 1rem;
+  text-decoration: underline;
 }
 
 .home-menu a {
