@@ -109,7 +109,7 @@ main {
 
 /* Synthetic document title (the page's own title lives in metadata only). */
 main::before {
-    content: "Curriculum Vitæ";
+    content: "Lorie Den Os";
     display: block;
     font-family: var(--display);
     font-weight: 700;
@@ -338,9 +338,28 @@ footer a {
 
 /* ---- Print: a clean sheet, no desk, no stamp ------------------------ */
 
+/* The print target is two A4 pages. Everything below is about density
+   (tighter leading, smaller type, tech stacks flowing inline instead of in
+   a two-column grid) and about never stranding a heading, a date line or a
+   role label at the foot of a page away from the text it introduces. */
+
+@page {
+    size: A4;
+    margin: 11mm 12mm;
+}
+
 @media print {
-    html {
+
+    html,
+    body {
         background: #fff;
+    }
+
+    /* Everything below is sized in rem, so this one knob scales the whole
+       sheet: nudge it to rebalance how the content splits over the two
+       pages after an edit to the CV. */
+    html {
+        font-size: 16.5px;
     }
 
     body {
@@ -350,12 +369,132 @@ footer a {
         box-shadow: none;
     }
 
+    /* Colours must survive the "no background graphics" default: the teal
+       section tabs and the ink list markers are structural here, not decor. */
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    header {
+        padding: 0 0 0.45rem;
+        font-size: 0.62rem;
+    }
+
+    header h1 {
+        font-size: 0.8rem;
+    }
+
+    header .linkedin-logo {
+        width: 0.95rem;
+        height: 0.95rem;
+    }
+
+    main {
+        padding: 0.7rem 0 0;
+    }
+
+    main::before {
+        font-size: 1.55rem;
+    }
+
+    /* The rubber stamp is a screen flourish; a printed CV shouldn't shout. */
     main::after {
         display: none;
     }
 
-    main h1,
+    main h1 {
+        margin: 0.85rem 0 0.45rem;
+        padding-top: 0.4rem;
+        gap: 0.7rem;
+        font-size: 1rem;
+        border-top-width: 5px;
+    }
+
+    main h1::before {
+        padding: 0.12rem 0.4rem;
+        font-size: 0.75rem;
+    }
+
     main h2 {
+        margin: 0.6rem 0 0.1rem;
+        font-size: 0.85rem;
+    }
+
+    main h3 {
+        margin: 0.1rem 0;
+        font-size: 0.78rem;
+    }
+
+    main p {
+        margin: 0.22rem 0;
+        font-size: 0.72rem;
+        line-height: 1.4;
+    }
+
+    /* Skills and tech stacks flow inline and wrap, instead of locking into
+       two fixed columns — same content, roughly half the height. */
+    main ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.1rem 1.1rem;
+        margin: 0.3rem 0 0.45rem;
+    }
+
+    main li {
+        padding-left: 0.75rem;
+        font-size: 0.74rem;
+        line-height: 1.45;
+    }
+
+    main li::before {
+        top: 0.5em;
+        width: 0.35rem;
+        height: 0.35rem;
+    }
+
+    main hr {
+        margin: 0.6rem 0;
+    }
+
+    footer {
+        padding: 0.5rem 0 0;
+        font-size: 0.58rem;
+    }
+
+    /* ---- Widow / orphan control ------------------------------------- */
+
+    /* Nothing that introduces something else may be the last thing on a
+       page: the entry rule, the employer, the org/date record lines under
+       it, and the role label all have to drag the next block along.
+
+       This has to stay a *short* chain. Add one more link (gluing the
+       tech-stack list to the paragraph above it, say) and a whole entry
+       becomes unbreakable; Chrome then answers an entry that doesn't fit by
+       emitting a near-empty page rather than by splitting it. */
+    main h1,
+    main h2,
+    main h3,
+    main hr,
+    main h2+p,
+    main h2+p+p,
+    main h3+p {
         break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    /* Lists are short enough to keep whole; splitting a wrapped tech stack
+       across a page boundary reads as two separate stacks. */
+    main ul,
+    main ol,
+    main li {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    /* Body paragraphs may split, but never leave a line or two behind. */
+    main p {
+        orphans: 3;
+        widows: 3;
     }
 }
