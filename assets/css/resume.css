@@ -109,7 +109,7 @@ main {
 
 /* Synthetic document title (the page's own title lives in metadata only). */
 main::before {
-    content: "Lorie Den Os";
+    content: "Curriculum Vitæ";
     display: block;
     font-family: var(--display);
     font-weight: 700;
