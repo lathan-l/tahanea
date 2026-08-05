@@ -2,3 +2,5 @@
  (name site) ;; internal name
  (public_name tahanea) ;; external name for this package
  (libraries yocaml yocaml_unix yocaml_yaml yocaml_markdown yocaml_jingoo))
+
+(include_subdirs qualified)
