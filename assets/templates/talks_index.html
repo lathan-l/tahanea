@@ -1,4 +1,5 @@
-<div class="layout layout--index home--index">
+<link rel="stylesheet" href="/talks.css">
+<div class="layout layout--index home--index layout--talks">
     <nav class="chapter-nav home-menu" aria-label="Site navigation">
         <ul class="home-menu__list">
             <li class="home-menu__item home-menu__item--resume"><a href="/resume.html">my resume</a></li>
@@ -11,39 +12,73 @@
     </nav>
     <main>
         {{safe (yocaml_body) }}
-
-        {% for talk in talks %}
-        <section>
-            <h2>{{ talk.title }}</h2>
-            <p>{{safe (talk.abstract) }}</p>
-
-
-            {% for event in talk.events %}
-            <div>
-                <p>{{ event.date.repr.date }}</p>
-                {%- if event.has_tags -%}
+        {# YOCaml only gives 3-letter month idents, so map the numeric month
+        (1..12) to a full name, as the article index does. #}
+        {% set months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"] %}
+        <ul class="talk-list">
+            {% for talk in talks %}
+            <li class="talk">
+                <h2 class="talk__title">{{ talk.title }}</h2>
+                {%- if talk.tags -%}
                 <ul class="tag-list">
-                    {%- for tag in event.tags -%}
+                    {%- for tag in talk.tags -%}
                     <li class="tag">{{ tag }}</li>
                     {%- endfor -%}
                 </ul>
                 {%- endif -%}
-                <h3>{{ event.name }}</h3>
-                <p><a href="{{ event.organization_website }}">{{ event.organization }}</a></p>
+                <div class="talk__abstract">{{safe (talk.abstract) }}</div>
 
-                {% if event.slides %}
-                <p><a href="{{ event.slides }}">slides</a></p>
-                {% endif %}
-                {% if event.video %}
-                <p><a href="{{ event.video }}">video</a></p>
-                {% endif %}
-                {% if event.image %}
-                <img src="{{ event.image }}" alt="image for {{ event.name }}">
-                {% endif %}
-
-            </div>
+                {%- if talk.events -%}
+                <ul class="event-cards">
+                    {% for event in talk.events %}
+                    <li class="event-card {% if not event.has_image %}event-card--plain{% endif %}">
+                        {% if event.has_image %}
+                        {# the polaroid frame is drawn by CSS behind the photo; the date is
+                        written on its bottom strip #}
+                        <div class="event-card__photo">
+                            <img class="event-card__image" src="{{ event.image }}" alt="{{ event.name }}">
+                            <time class="event-card__caption" datetime="{{ event.date.repr.date }}">{{ event.date.day }}
+                                {{ months[event.date.month - 1] }} {{ event.date.year }}</time>
+                        </div>
+                        {% endif %}
+                        <div class="event-card__body">
+                            {% if not event.has_image %}
+                            <time class="event-card__date" datetime="{{ event.date.repr.date }}">{{ event.date.day }} {{
+                                months[event.date.month - 1] }} {{ event.date.year }}</time>
+                            {% endif %}
+                            <h3 class="event-card__name">{{ event.name }}</h3>
+                            <p class="event-card__org">
+                                {%- if event.has_organization_website -%}
+                                <a href="{{ event.organization_website }}">{{ event.organization }}</a>
+                                {%- else -%}
+                                {{ event.organization }}
+                                {%- endif -%}
+                            </p>
+                            {%- if event.has_tags -%}
+                            <ul class="tag-list">
+                                {%- for tag in event.tags -%}
+                                <li class="tag">{{ tag }}</li>
+                                {%- endfor -%}
+                            </ul>
+                            {%- endif -%}
+                            {%- if event.has_slides or event.has_video -%}
+                            <p class="event-card__links">
+                                {%- if event.has_slides -%}
+                                <a href="{{ event.slides }}">slides</a>
+                                {%- endif -%}
+                                {%- if event.has_video -%}
+                                <a href="{{ event.video }}">video</a>
+                                {%- endif -%}
+                            </p>
+                            {%- endif -%}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {%- endif -%}
+            </li>
             {% endfor %}
-        </section>
-        {% endfor %}
+        </ul>
     </main>
 </div>

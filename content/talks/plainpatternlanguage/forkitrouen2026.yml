@@ -1,7 +1,7 @@
 organization: "Fork It!"
 organization_website: https://www.forkit.community/
-name: "Rouen 2026"
+name: "Fork It! Rouen 2026"
 date: "2026-06-05"
-slides: .target/pdf/ppl_slides_forkit.pdf
-image: .target/img/forkitrouen.png
+slides: /pdf/ppl_slides_forkit.pdf
+image: /img/forkitrouen.png
 tags: ["in French", "45min"]

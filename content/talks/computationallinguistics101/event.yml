@@ -3,5 +3,5 @@ organization_website: "https://www.meetup.com/ialyon/"
 name: "Intelligence artificielle, langage et représentation"
 date: "2017-01-26"
 video: "https://www.youtube.com/watch?v=abI5Ik8uMiU&t=1256s"
-image: .target/img/meetupialyon.png
+image: /img/meetupialyon.png
 tags: ["in French", "1h"]

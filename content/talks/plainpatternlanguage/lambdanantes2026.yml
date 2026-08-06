@@ -2,6 +2,6 @@ organization: "Lambda Nantes"
 organization_website: https://lambdanantes.fr/
 name: "Lambda Nantes 10"
 date: "2026-03-19"
-slides: .target/pdf/ppl_slides_lambdanantes.pdf
-image: .target/img/lambdanantes.png
+slides: /pdf/ppl_slides_lambdanantes.pdf
+image: /img/lambdanantes10.jpg
 tags: ["in French", "1h15"]
