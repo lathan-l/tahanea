@@ -27,3 +27,8 @@ let from_data =
         opt fields "slides" (string $ String.trim & String.not_blank)
       in
       { organization; name; date; slides })
+
+let validate = from_data
+let entity_name = "event"
+let neutral = Yocaml.Metadata.required entity_name
+let compare a b = Yocaml.Datetime.compare a.date b.date

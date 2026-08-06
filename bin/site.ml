@@ -1,5 +1,5 @@
 open Yocaml
-(*module Talk = Model.Talk*)
+module Talk = Model.Talk
 
 let cache_path = Path.rel [ ".cache" ]
 let target_path = Path.rel [ ".target" ]
@@ -32,14 +32,12 @@ let create_404 =
   let pipeline =
     let open Task in
     let+ metadata, content =
-      Pipeline.read_file_with_metadata
-        (module Yocaml_yaml)
+      Yocaml_yaml.Pipeline.read_file_with_metadata
         (module Archetype.Page)
         source_path
     and+ () = Pipeline.track_file binary_path
     and+ apply_templates =
-      Pipeline.read_templates
-        (module Yocaml_jingoo)
+      Yocaml_jingoo.read_templates
         Path.[ templates_path / "404tpl.html"; templates_path / "layout.html" ]
     in
     content |> Yocaml_markdown.from_string_to_html
@@ -56,14 +54,12 @@ let create_article source_path =
   let pipeline =
     let open Task in
     let+ metadata, content =
-      Pipeline.read_file_with_metadata
-        (module Yocaml_yaml)
+      Yocaml_yaml.Pipeline.read_file_with_metadata
         (module Archetype.Article)
         source_path
     and+ () = Pipeline.track_file binary_path
     and+ apply_templates =
-      Pipeline.read_templates
-        (module Yocaml_jingoo)
+      Yocaml_jingoo.read_templates
         Path.[ templates_path / "page.html"; templates_path / "layout.html" ]
     in
     content |> Yocaml_markdown.from_string_to_html
@@ -79,14 +75,12 @@ let create_resume =
   let pipeline =
     let open Task in
     let+ metadata, content =
-      Pipeline.read_file_with_metadata
-        (module Yocaml_yaml)
+      Yocaml_yaml.Pipeline.read_file_with_metadata
         (module Archetype.Page)
         source_path
     and+ () = Pipeline.track_file binary_path
     and+ apply_templates =
-      Pipeline.read_templates
-        (module Yocaml_jingoo)
+      Yocaml_jingoo.read_templates
         Path.
           [
             templates_path / "resume.html";
@@ -115,14 +109,12 @@ let create_articles_index =
   let pipeline =
     let open Task in
     let+ metadata, content =
-      Pipeline.read_file_with_metadata
-        (module Yocaml_yaml)
+      Yocaml_yaml.Pipeline.read_file_with_metadata
         (module Archetype.Page)
         source_path
     and+ () = Pipeline.track_file binary_path
     and+ apply_templates =
-      Pipeline.read_templates
-        (module Yocaml_jingoo)
+      Yocaml_jingoo.read_templates
         Path.
           [
             templates_path / "articles_index.html";
@@ -137,26 +129,26 @@ let create_articles_index =
 
 let create_talks_index =
   let source_path = Path.rel [ "content"; "talks.md" ] in
+  let talks_dir = Path.rel [ "content"; "talks" ] in
   let target_page_path = Path.rel [ ".target"; "talks.html" ] in
   let pipeline =
     let open Task in
-    let+ metadata, content =
-      Pipeline.read_file_with_metadata
-        (module Yocaml_yaml)
+    let+ page, content =
+      Yocaml_yaml.Pipeline.read_file_with_metadata
         (module Archetype.Page)
         source_path
     and+ () = Pipeline.track_file binary_path
+    and+ talks = Talk.fetch_all talks_dir
     and+ apply_templates =
-      Pipeline.read_templates
-        (module Yocaml_jingoo)
+      Yocaml_jingoo.read_templates
         Path.
           [
             templates_path / "talks_index.html"; templates_path / "layout.html";
           ]
-    and+ articles = fetch_articles in
-    let metadata = Archetype.Articles.with_page ~page:metadata ~articles in
+    in
+    let metadata = Talk.Listing.make page talks in
     content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Archetype.Articles)
+    |> apply_templates ~metadata (module Talk.Listing)
   in
   Action.Static.write_file target_page_path pipeline
 

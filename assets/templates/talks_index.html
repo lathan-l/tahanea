@@ -12,7 +12,19 @@
     <main>
         {{safe (yocaml_body) }}
 
-        <p>There are no {{ page_title }} yet.</p>
+        {% for talk in talks %}
+        <section>
+            <h1>{{ talk.title }}</h1>
+            <p>{{safe (talk.abstract) }}</p>
 
+
+            {% for event in talk.events %}
+            <div>
+                <h2>{{ event.organization }} {{ event.name }}</h2>
+                <p>{{ event.date.repr.date }}</p>
+            </div>
+            {% endfor %}
+        </section>
+        {% endfor %}
     </main>
 </div>
