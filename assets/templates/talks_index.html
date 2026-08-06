@@ -14,14 +14,33 @@
 
         {% for talk in talks %}
         <section>
-            <h1>{{ talk.title }}</h1>
+            <h2>{{ talk.title }}</h2>
             <p>{{safe (talk.abstract) }}</p>
 
 
             {% for event in talk.events %}
             <div>
-                <h2>{{ event.organization }} {{ event.name }}</h2>
                 <p>{{ event.date.repr.date }}</p>
+                {%- if event.has_tags -%}
+                <ul class="tag-list">
+                    {%- for tag in event.tags -%}
+                    <li class="tag">{{ tag }}</li>
+                    {%- endfor -%}
+                </ul>
+                {%- endif -%}
+                <h3>{{ event.name }}</h3>
+                <p><a href="{{ event.organization_website }}">{{ event.organization }}</a></p>
+
+                {% if event.slides %}
+                <p><a href="{{ event.slides }}">slides</a></p>
+                {% endif %}
+                {% if event.video %}
+                <p><a href="{{ event.video }}">video</a></p>
+                {% endif %}
+                {% if event.image %}
+                <img src="{{ event.image }}" alt="image for {{ event.name }}">
+                {% endif %}
+
             </div>
             {% endfor %}
         </section>

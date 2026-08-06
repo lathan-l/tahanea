@@ -1,0 +1,7 @@
+organization: "Software Crafters Nantes"
+organization_website: https://mobilizon.fr/@software_crafters_nantes
+name: "Software Crafters Nantes a 10 ans!"
+date: "2026-06-16"
+slides: .target/pdf/ppl_slides_forkit.pdf
+image: .target/img/softwarecrafters10y.jpeg
+tags: ["in French", "35min"]

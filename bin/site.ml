@@ -26,6 +26,10 @@ let copy_images =
   let source_path = Path.rel [ "assets"; "img" ] in
   Action.copy_directory ~into:target_path source_path
 
+let copy_pdfs =
+  let source_path = Path.rel [ "assets"; "pdf" ] in
+  Action.copy_directory ~into:target_path source_path
+
 let create_404 =
   let source_path = Path.rel [ "content"; "404.md" ] in
   let target_page_path = Path.rel [ ".target"; "404.html" ] in
@@ -203,9 +207,9 @@ let create_index =
 let program () =
   let open Eff in
   Action.restore_cache cache_path
-  >>= copy_cname >>= copy_css >>= copy_images >>= create_404 >>= create_articles
-  >>= create_articles_index >>= create_talks_index >>= create_mysterious_links
-  >>= create_index >>= create_resume
+  >>= copy_cname >>= copy_css >>= copy_images >>= copy_pdfs >>= create_404
+  >>= create_articles >>= create_articles_index >>= create_talks_index
+  >>= create_mysterious_links >>= create_index >>= create_resume
   >>= Action.store_cache cache_path
 
 let () =
