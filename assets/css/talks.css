@@ -63,7 +63,9 @@ body:has(.layout--talks)::before {
   width: 1.9rem;
   height: 0.86rem;
   margin-right: 0.5rem;
-  vertical-align: 0.08em;
+  /* dropped below the cap line so the finger points at the middle of the
+     small caps rather than over their tops */
+  vertical-align: -0.01em;
   background: url("img/manicule-right.png") no-repeat center / contain;
 }
 
@@ -83,19 +85,20 @@ body:has(.layout--talks)::before {
 .event-cards {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  /* room for the polaroids, which stand slightly proud of their cards */
+  gap: 2rem;
   margin: 1.5rem 0 0;
 }
 
 .event-card {
   display: grid;
-  grid-template-columns: 10rem 1fr;
+  grid-template-columns: 11.5rem 1fr;
   gap: 1.1rem;
   /* the polaroid is taller than its few lines of text — centre them against it
      rather than leaving a hole at the bottom of the card */
   align-items: center;
   margin: 0;
-  padding: 0.9rem;
+  padding: 0.8rem;
   background-color: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 2px;
@@ -133,6 +136,10 @@ body:has(.layout--talks)::before {
 .event-card__photo {
   position: relative;
   aspect-ratio: 500 / 610;
+  /* the polaroid is taped onto the card rather than boxed inside it: the
+     negative margins let it stand proud top and bottom, which keeps the card
+     short while the picture itself stays big */
+  margin-block: -1rem;
 }
 
 /* the frame goes over the photo, so the tape lies on top of the picture the
@@ -223,6 +230,7 @@ body:has(.layout--talks)::before {
    Narrow screens — the picture goes above the text, drips shrink
    -------------------------------------------------------------------------- */
 @media (max-width: 34rem) {
+
   /* the polaroid goes above the text, centred rather than stretched wide */
   .event-card {
     grid-template-columns: 1fr;
@@ -230,7 +238,9 @@ body:has(.layout--talks)::before {
   }
 
   .event-card__photo {
-    width: 12rem;
+    width: 13rem;
+    /* stacked, it only needs to poke out of the top edge */
+    margin-block: -1.4rem 0;
   }
 
   .event-card__body {
