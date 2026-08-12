@@ -104,9 +104,10 @@ body::before {
   z-index: -1;
 }
 
-/* content pages — ink splatter anchored to the top-left corner so it scrolls
-   away once the reader moves down */
-body:has(.layout--page)::before {
+/* content pages and the articles index — ink splatter anchored to the
+   top-left corner so it scrolls away once the reader moves down */
+body:has(.layout--page)::before,
+body:has(.layout--articles)::before {
   background-image: url("img/pngkey.com-color-splatter-png-461231.png");
   top: 0;
   left: 0;
@@ -137,11 +138,6 @@ body:has(.layout--page)::before {
   padding: 0.25rem 1.5rem 2rem 0;
   font-family: var(--head-font);
   font-size: 0.95rem;
-  /* decorative dried flower resting at the bottom of the left column */
-  background-image: url("img/vecteezy_isolated-pressed-and-dried-blue-flower-aesthetic_43274652.png");
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: auto 12rem;
 }
 
 .chapter-nav__title {
