@@ -38,14 +38,14 @@
                         written on its bottom strip #}
                         <div class="event-card__photo">
                             <img class="event-card__image" src="{{ event.image }}" alt="{{ event.name }}">
-                            <time class="event-card__caption" datetime="{{ event.date.repr.date }}">{{ event.date.day }}
-                                {{ months[event.date.month - 1] }} {{ event.date.year }}</time>
+                            <time class="event-card__caption" datetime="{{ event.date.repr.date }}">{{
+                                months[event.date.month - 1] }} {{ event.date.day }}, {{ event.date.year }}</time>
                         </div>
                         {% endif %}
                         <div class="event-card__body">
                             {% if not event.has_image %}
-                            <time class="event-card__date" datetime="{{ event.date.repr.date }}">{{ event.date.day }} {{
-                                months[event.date.month - 1] }} {{ event.date.year }}</time>
+                            <time class="event-card__date" datetime="{{ event.date.repr.date }}">{{
+                                months[event.date.month - 1] }} {{ event.date.day }}, {{ event.date.year }}</time>
                             {% endif %}
                             <h3 class="event-card__name">{{ event.name }}</h3>
                             <p class="event-card__org">
@@ -65,10 +65,10 @@
                             {%- if event.has_slides or event.has_video -%}
                             <p class="event-card__links">
                                 {%- if event.has_slides -%}
-                                <a href="{{ event.slides }}">slides</a>
+                                <a class="event-card__link event-card__link--slides" href="{{ event.slides }}">slides</a>
                                 {%- endif -%}
                                 {%- if event.has_video -%}
-                                <a href="{{ event.video }}">video</a>
+                                <a class="event-card__link event-card__link--video" href="{{ event.video }}">video</a>
                                 {%- endif -%}
                             </p>
                             {%- endif -%}
