@@ -226,6 +226,34 @@ body:has(.layout--talks)::before {
   font-size: 0.9rem;
 }
 
+/* a paperclip for the slides and a camera for the video, drawn ahead of the
+   word the way you'd clip or pin the thing itself to a postcard.
+   `icon-paperclip.svg` and `icon-camera.svg` are the Streamline Freehand
+   duotones recoloured to the page's ink and coffee-stain brown, so the icons
+   carry their own two colours and need no filter here. */
+.event-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.event-card__link::before {
+  content: "";
+  /* stops flex from squeezing the square when the card gets narrow */
+  flex: none;
+  width: 1.15em;
+  height: 1.15em;
+  background: no-repeat center / contain;
+}
+
+.event-card__link--slides::before {
+  background-image: url("img/icon-paperclip.svg");
+}
+
+.event-card__link--video::before {
+  background-image: url("img/icon-camera.svg");
+}
+
 /* --------------------------------------------------------------------------
    Narrow screens — the picture goes above the text, drips shrink
    -------------------------------------------------------------------------- */
