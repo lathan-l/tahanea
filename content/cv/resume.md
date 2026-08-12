@@ -15,20 +15,24 @@ In my free time, I enjoy tinkering with this website, painting, drinking coffee,
 ## Best suited for
 
 ### 1 - Technical roles with a complex product
+I'm a fast learner and I like digging through legacy code.
 - senior software engineer
 - backend software engineer
 
 ### 2 - Engineering management roles
+I'm a people person. I enjoy mentoring and keeping meetings short and effective.
 - engineering manager
 - scrum master
 
 ### 3 - Product roles with a strong technical side
+I’m a rational, structured thinker who enjoys modeling problems.
 - technical product manager
 - technical product owner
 
 ---
 
-## Obvious skills
+## ⚙️ Obvious skills
+The technical skills you'd expect from a dev with 10y experience
 - Java, Object Oriented Programming
 - Version Control, CI/CD Tools
 - Relational Databases
@@ -42,7 +46,8 @@ In my free time, I enjoy tinkering with this website, painting, drinking coffee,
 - Technical Writing & Documentation
 - Project Management
 
-## Niche skills
+## 💎 Niche skills
+Specialized technical expertise (Spanish Inquisition)
 - Domain Driven Design & Microservices
 - Rule-Based Systems
 - Natural Language Generation
@@ -50,10 +55,22 @@ In my free time, I enjoy tinkering with this website, painting, drinking coffee,
 - Cross-functional Discovery
 - Technical Presentation
 
-## Currently learning
-- Functional Programming
-- Day-to-Day AI usage
+## 🗺️ Product Domains
+Areas of product experience and domain knowledge
+- Text Generation & GenAI
+- Business Intelligence
+- Project & Work Management
+- Content & Knowledge Management
+- Public Tenders & Contracts
+- Search Engine
+- Credit & Balance Management
+- Batch Data Processing
+- Medical Writing
+
+## 🌱 Currently learning
+Things I’m actively exploring and developing
 - Continuous Product Discovery
+- Functional Programming 
 - OCaml, Scala
 
 # Work experience
