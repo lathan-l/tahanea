@@ -136,6 +136,36 @@ main::after {
     opacity: 0.85;
 }
 
+/* The page's own metadata tags, as small keyword labels — not bulleted list
+   items like the skill lists below. They sit low under the title, tucked
+   just above the double rule that opens the first section. */
+main .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.4rem;
+    margin: 2.25rem 0 0;
+    padding: 0;
+}
+
+main .tag-list+h1 {
+    margin-top: 0.7rem;
+}
+
+main .tag {
+    padding: 0.15rem 0.45rem;
+    border: 1px solid var(--teal);
+    color: var(--teal);
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    line-height: 1.5;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+main .tag::before {
+    display: none;
+}
+
 /* Section headings (About me / Work experience / Education) get a heavy
    rule and a solid numbered tab — part IKEA step, part form section no. */
 main h1 {
@@ -401,6 +431,14 @@ footer a {
     /* The rubber stamp is a screen flourish; a printed CV shouldn't shout. */
     main::after {
         display: none;
+    }
+
+    main .tag-list {
+        margin-top: 0.9rem;
+    }
+
+    main .tag-list+h1 {
+        margin-top: 0.45rem;
     }
 
     main h1 {

@@ -6,6 +6,7 @@ type t = {
   slides : string option;
   video : string option;
   image : string option;
+  feedbacks : string option;
   tags : string list;
 }
 
@@ -18,6 +19,7 @@ let to_data
       slides;
       video;
       image;
+      feedbacks;
       tags;
     } =
   let open Yocaml.Data in
@@ -34,13 +36,25 @@ let to_data
       ("has_video", bool (Option.is_some video));
       ("image", option string image);
       ("has_image", bool (Option.is_some image));
+      ("feedbacks", option string feedbacks);
+      ("has_feedbacks", bool (Option.is_some feedbacks));
       ("tags", list_of string tags);
       ("has_tags", bool (List.length tags > 0));
     ]
 
 let make ?(tags = []) ?organization_website ~organization ~name ~date ?slides
-    ?video ?image () =
-  { organization; organization_website; name; date; slides; video; image; tags }
+    ?video ?image ?feedbacks () =
+  {
+    organization;
+    organization_website;
+    name;
+    date;
+    slides;
+    video;
+    image;
+    feedbacks;
+    tags;
+  }
 
 let from_data =
   let open Yocaml.Data.Validation in
@@ -57,9 +71,11 @@ let from_data =
       and+ image = opt fields "image" (string $ String.trim & String.not_blank)
       and+ tags =
         opt fields "tags" (list_of (string $ String.trim & String.not_blank))
+      and+ feedbacks =
+        opt fields "feedbacks" (string $ String.trim & String.not_blank)
       in
       make ~organization ?organization_website ~name ~date ?slides ?video ?image
-        ?tags ())
+        ?feedbacks ?tags ())
 
 let validate = from_data
 let entity_name = "event"

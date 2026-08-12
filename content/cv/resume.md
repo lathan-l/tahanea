@@ -1,5 +1,6 @@
 ---
 title: curriculum vitae
+tags: ["product tech lead", "software craftsmanship", "software architecture"]
 ---
 
 # About me
