@@ -54,6 +54,7 @@ In my free time, I enjoy tinkering with this website, painting, drinking coffee,
 - Functional Programming
 - Day-to-Day AI usage
 - Continuous Product Discovery
+- OCaml, Scala
 
 # Work experience
 
