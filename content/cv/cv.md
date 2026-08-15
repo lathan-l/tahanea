@@ -1,39 +1,39 @@
 ---
-title: en
-tags: ["product tech lead", "software craftsmanship", "software architecture"]
+title: fr
+tags: ["en cours de traduction"]
 ---
 
-# About me
+# à propos
 
-I am an **experienced backend developer** with strong people skills. I value both team work and code quality, and I can't imagine one without the other. People usually describe me as a very serious, **reliable** professional *and* an ever cheerful, **positive-minded** person. I feel most driven when the product has a **meaningful** impact on people's lives.
+Je suis une **développeuse backend** avec **plus de 10 ans d'expérience** qui aspire à écrire du code de qualité *et* à travailler en équipe, car il me semble que l'un ne va pas sans l'autre. Mes collègues me décrivent généralement comme une personne très professionnelle et **carrée**, et également particulièrement **enthousiaste** et joviale. Je m'épanouis d'autant plus lorsque je participe à des projets alignés avec mes valeurs.
 
-I like things organized and I thrive in **structured environments**, even when it is me doing the organizing. My favourite color is Jira and my spirit animal is time-boxed meetings. I enjoy working in pairs, working alone, and [knowledge-sharing sessions](https://www.tahanea.net/talks.html) with the team.  I am comfortable working from home but would be glad to go on-site in **Nantes, France**, where I'm based.
+J'apprécie que les choses soient transparentes et bien organisées, et contribuer à ce qu'elles le deviennent. Je suis Sagittaire ascendant Jira et mon animal totem est une réunion qui finit à l'heure. J'aime travailler en binôme, travailler seule, et [animer des réunions](https://www.tahanea.net/talks.html) de partage de connaissances. Je suis très à l'aise en télétravail mais je serais ravie de passer un peu de temps dans des bureaux proches de chez moi à **Nantes** !
 
-In my free time, I enjoy tinkering with this website, painting, drinking coffee, and playing adventure and puzzle video games. 
+J'occupe mon temps libre à bidouiller sur ce site, dessiner, boire du café et à jouer aux jeux-vidéo.
 
 ---
 
-## Best suited for
+## postes pertinents
 
-### 1 - Technical roles with a complex product
-I'm a fast learner and I like digging through legacy code.
-- senior software engineer
-- backend software engineer
+### 1 - Technique avec un produit complexe
+J'apprends vite et l'archéologie dans du legacy m'amuse bien...
+- ingénieur logiciel senior
+- développeur backend
 
-### 2 - Engineering management roles
-I'm a people person. I enjoy mentoring and keeping meetings short and effective.
+### 2 - Management
+J'ai un bon relationnel et j'aime transmettre.
 - engineering manager
 - scrum master
 
-### 3 - Product roles with a strong technical side
-I’m a rational, structured thinker who enjoys modeling problems.
-- technical product manager
-- technical product owner
+### 3 - Produit avec une forte composante tech
+J'aime décortiquer et modéliser des problèmes méthodiquement.
+- product manager technique
+- product owner technique
 
 ---
 
-## ⚙️ Obvious skills
-The technical skills you'd expect from a dev with 10y experience
+## ⚙️ Compétences communes
+Des compétences classiques après 10 ans de développement backend
 - Java, Object Oriented Programming
 - Version Control, CI/CD Tools
 - Relational Databases
@@ -47,8 +47,8 @@ The technical skills you'd expect from a dev with 10y experience
 - Technical Writing & Documentation
 - Project Management
 
-## 💎 Niche skills
-Specialized technical expertise (Spanish Inquisition)
+## 💎 Compétences rares
+Des compétences un peu plus exotiques (la 3e va vous surprendre!) (non)
 - Domain Driven Design & Microservices
 - Rule-Based Systems
 - Natural Language Generation
@@ -56,7 +56,7 @@ Specialized technical expertise (Spanish Inquisition)
 - Cross-functional Discovery
 - Technical Presentation
 
-## 🗺️ Product Domains
+## 🗺️ Domaines métier
 Areas of product experience and domain knowledge
 - Text Generation & GenAI
 - Business Intelligence
@@ -68,7 +68,7 @@ Areas of product experience and domain knowledge
 - Batch Data Processing
 - Medical Writing
 
-## 🌱 Currently learning
+## 🌱 Bientôt 
 Things I’m actively exploring and developing
 - Continuous Product Discovery
 - Functional Programming 
@@ -190,63 +190,64 @@ My internship was supervised by R. Salmon during his [PhD](https://theses.fr/201
 ---
 
 ## Accor
-[Paris Bastille Opera Ibis (3-star) Hotel](https://all.accor.com/booking/fr/ibis/hotel/1399?destination=11th-arrondissement-75011-paris-france)
+[Hôtel Ibis Paris Bastille Opéra (\*\*\*)](https://all.accor.com/booking/fr/ibis/hotel/1399?destination=11th-arrondissement-75011-paris-france)
 
 06.2013 - 03.2014
-### Hotel Receptionist (Student job)
+### Réceptionniste (Student job)
 
 I worked the evening shifts (7pm-11pm or 8pm-12am) 4 to 7 days a week, while studying for my Master's degree. I processed check-ins and check-outs, assigned rooms, handled guest payments, and resolved complaints. I also coordinated with other hotels to help guests when the hotel was fully booked. I got to practice welcoming guests in French, English, Dutch, Russian and Spanish.
 
 ---
 
-## Paris Brain Institute
-[Donations and Communications Department](https://parisbraininstitute.org/)
+## Institut du Cerveau
+[Service Communication et Relations donateurs](https://parisbraininstitute.org/)
 
 06.2012 - 09.2012
-### Data Entry Clerk (Student job)
+### Assistante de saisie (Student job)
 
 My job was to collect incoming mail donations every day, and to input, update and verify donator information in the donations database. I would then print and sort each donation receipt. It was a full-time 9-to-5 summer job.
 
-# Education
+# Etudes
 
-## Computational Linguistics, Master's degree
+## Master de Linguistique Informatique
 09.2013 - 06.2015
 
 ### Université Paris Cité
 
-*Master 2 Professionel de Linguistique Informatique*
-magna cum laude
-- Natural Language Generation
-- Natural Language Understanding
-- Automated Translation
-- Formal Grammars
-- Formal Semantics
+*Master 2 Professionel, Intelligence Artificielle*
+mention bien
+- Génération Automatique de Texte
+- Compréhension du Langage Naturel
+- Traduction Automatique
+- Grammaires Formelles
+- Sémantique Formelle
 - Ontologies
-- Programming (Java, OCaml)
+- Programmation (Java, OCaml)
 
-## Linguistics, Bachelor's degree
+## Licence de Sciences du Langage
 09.2010 - 06.2013
 
 ### Université Sorbonne Nouvelle
 
-*Licence de Sciences du Langage*
-magna cum laude
-- Natural Language Processing
-- Finnish studies 
-- Syntax
-- Semantics
-- Phonology
-- Sociolinguistics
-- First-language Acquisition
-- Programming (Python, Perl)
+*Parcours TAL*
+mention bien
+- Traitement Automatique du Langage
+- Etudes finnoises
+- Syntaxe
+- Sémantique
+- Phonologie
+- Sociolinguistique
+- Acquisition du Langage
+- Programmation (Python, Perl)
 
 
-## A-Levels in French
+## Baccalauréat Général Scientifique
 06.2010
 
 ### Lycée Louis-le-Grand
 
-*Baccalauréat Général Scientifique*
-magna cum laude
-- Mathematics
-- English, Russian, Dutch
+*Section S-SVT*
+mention bien
+- LV1 Anglais
+- LV2 Russe
+- LV3 Néerlandais

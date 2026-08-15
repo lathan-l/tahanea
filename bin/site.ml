@@ -73,9 +73,12 @@ let create_article source_path =
 
 let create_articles = Batch.iter_files articles create_article
 
-let create_resume =
-  let source_path = Path.rel [ "content"; "cv"; "resume.md" ] in
-  let target_page_path = Path.rel [ ".target"; "resume.html" ] in
+let create_resume source_path =
+  let target_resume_path =
+    source_path
+    |> Path.change_extension "html"
+    |> Path.move ~into:Path.(target_path / "cv")
+  in
   let pipeline =
     let open Task in
     let+ metadata, content =
@@ -94,7 +97,11 @@ let create_resume =
     content |> Yocaml_markdown.from_string_to_html
     |> apply_templates ~metadata (module Archetype.Page)
   in
-  Action.Static.write_file target_page_path pipeline
+  Action.Static.write_file target_resume_path pipeline
+
+let create_all_resumes =
+  let source_path = Path.rel [ "content"; "cv" ] in
+  Batch.iter_files source_path create_resume
 
 let compute_link source =
   let into = Path.abs [ "articles" ] in
@@ -209,7 +216,7 @@ let program () =
   Action.restore_cache cache_path
   >>= copy_cname >>= copy_css >>= copy_images >>= copy_pdfs >>= create_404
   >>= create_articles >>= create_articles_index >>= create_talks_index
-  >>= create_mysterious_links >>= create_index >>= create_resume
+  >>= create_mysterious_links >>= create_index >>= create_all_resumes
   >>= Action.store_cache cache_path
 
 let () =
