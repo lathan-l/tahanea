@@ -1,5 +1,5 @@
 ---
-title: curriculum vitae
+title: en
 tags: ["product tech lead", "software craftsmanship", "software architecture"]
 ---
 

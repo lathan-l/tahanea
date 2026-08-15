@@ -1,3 +1,10 @@
 <main class="home home--index">
+    {%- if has_tags -%}
+    <ul class="tag-list">
+        {%- for tag in tags -%}
+        <li class="tag">{{ tag }}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif -%}
     {{safe (yocaml_body) }}
 </main>

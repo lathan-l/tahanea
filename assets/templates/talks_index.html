@@ -62,13 +62,17 @@
                                 {%- endfor -%}
                             </ul>
                             {%- endif -%}
-                            {%- if event.has_slides or event.has_video -%}
+                            {%- if event.has_slides or event.has_video or event.has_feedbacks -%}
                             <p class="event-card__links">
                                 {%- if event.has_slides -%}
                                 <a class="event-card__link event-card__link--slides" href="{{ event.slides }}">slides</a>
                                 {%- endif -%}
                                 {%- if event.has_video -%}
                                 <a class="event-card__link event-card__link--video" href="{{ event.video }}">video</a>
+                                {%- endif -%}
+                                {%- if event.has_feedbacks -%}
+                                <a class="event-card__link event-card__link--feedbacks"
+                                    href="{{ event.feedbacks }}">feedbacks</a>
                                 {%- endif -%}
                             </p>
                             {%- endif -%}
