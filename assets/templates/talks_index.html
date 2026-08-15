@@ -2,7 +2,7 @@
 <div class="layout layout--index home--index layout--talks">
     <nav class="chapter-nav home-menu" aria-label="Site navigation">
         <ul class="home-menu__list">
-            <li class="home-menu__item home-menu__item--resume"><a href="/resume.html">my resume</a></li>
+            <li class="home-menu__item home-menu__item--resume"><a href="/cv/resume.html">my resume</a></li>
             <li class="home-menu__item home-menu__item"><a href="/articles.html">articles</a></li>
             <li class="home-menu__item home-menu__selected-item"><a href="/talks.html">talks</a></li>
             <li class="home-menu__item home-menu__item"><a href="/mysterious_links.html">mysterious links</a>
@@ -65,7 +65,8 @@
                             {%- if event.has_slides or event.has_video or event.has_feedbacks -%}
                             <p class="event-card__links">
                                 {%- if event.has_slides -%}
-                                <a class="event-card__link event-card__link--slides" href="{{ event.slides }}">slides</a>
+                                <a class="event-card__link event-card__link--slides"
+                                    href="{{ event.slides }}">slides</a>
                                 {%- endif -%}
                                 {%- if event.has_video -%}
                                 <a class="event-card__link event-card__link--video" href="{{ event.video }}">video</a>

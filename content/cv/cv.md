@@ -15,10 +15,10 @@ J'occupe mon temps libre à bidouiller sur ce site, dessiner, boire du café et 
 
 ## postes pertinents
 
-### 1 - Technique avec un produit complexe
-J'apprends vite et l'archéologie dans du legacy m'amuse bien...
+### 1 - Dev avec un produit complexe
+J'apprends vite, et je n'ai pas peur d'un peu de dette technique !
 - ingénieur logiciel senior
-- développeur backend
+- développeuse backend
 
 ### 2 - Management
 J'ai un bon relationnel et j'aime transmettre.
