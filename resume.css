@@ -92,6 +92,30 @@ header .linkedin-logo {
     fill: currentColor;
 }
 
+/* Language switch (EN / FR) — pressable teal chips, like the tick-boxes on a
+   form asking you to choose an edition. Inverting on hover/focus is what
+   sells them as controls rather than as more letterhead text. */
+header h1 a.lang {
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--teal);
+    color: var(--teal);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    transition: background 0.12s ease, color 0.12s ease;
+}
+
+header h1 a.lang:hover,
+header h1 a.lang:focus-visible {
+    background: var(--teal);
+    color: var(--paper);
+}
+
+header h1 a.lang:active {
+    /* Pressed: the chip sinks a hair, like a stamped key. */
+    transform: translateY(1px);
+}
+
 /* Bureaucratic filing code on the right of the letterhead. */
 header::after {
     content: "Doc. CV-01 · Rev. MMXXVI";
