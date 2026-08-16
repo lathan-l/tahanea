@@ -448,8 +448,15 @@ footer a {
         padding: 0.7rem 0 0;
     }
 
+    /* On paper the document type is obvious; the name is the thing a
+       reader (or a stack of printouts on a desk) needs at the top. */
     main::before {
+        content: "Lorie den Os";
         font-size: 1.55rem;
+        /* Michroma is very wide; all-caps was fine for a two-word document
+           label, but a name reads faster with ascenders and descenders to
+           give it a word shape. */
+        text-transform: none;
     }
 
     /* The rubber stamp is a screen flourish; a printed CV shouldn't shout. */
@@ -519,9 +526,28 @@ footer a {
         margin: 0.6rem 0;
     }
 
+    /* The colophon (social links, random tagline, build credits) is a
+       website thing; a printed CV has no use for it, and dropping it buys
+       back a few lines of the last page. */
     footer {
-        padding: 0.5rem 0 0;
-        font-size: 0.58rem;
+        display: none;
+    }
+
+    /* ---- Screen-only content ---------------------------------------- */
+
+    /* Two blocks are for the web edition only: the free-time paragraph that
+       closes the intro, and the A-levels entry that closes Education —
+       neither earns its space on a printed CV.
+
+       The markdown body carries no classes to hook, so both are addressed
+       by position. The first section's third paragraph, and the last
+       education entry: its h2 plus everything after it, since that entry is
+       the last block of the document. Append anything after Education and
+       that second pair of selectors needs revisiting. */
+    main>h1:first-of-type+p+p+p,
+    main>h2:last-of-type,
+    main>h2:last-of-type~* {
+        display: none;
     }
 
     /* ---- Widow / orphan control ------------------------------------- */
