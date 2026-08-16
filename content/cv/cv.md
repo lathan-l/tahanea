@@ -1,13 +1,13 @@
 ---
 title: fr
-tags: ["en cours de traduction"]
+tags: ["product tech lead", "software craftsmanship", "architecture logicielle"]
 ---
 
 # à propos
 
-Je suis une **développeuse backend** avec **plus de 10 ans d'expérience** qui aspire à écrire du code de qualité *et* à travailler en équipe, car il me semble que l'un ne va pas sans l'autre. Mes collègues me décrivent généralement comme une personne très professionnelle et **carrée**, et également particulièrement **enthousiaste** et joviale. Je m'épanouis d'autant plus lorsque je participe à des projets alignés avec mes valeurs.
+Je suis une **développeuse backend** avec **plus de 10 ans d'expérience** qui aspire à écrire du code de qualité *et* à travailler en équipe, car il me semble que l'un ne va pas sans l'autre. On me considère généralement comme une personne à la fois très professionnelle et **carrée**, et à la fois particulièrement **enthousiaste** et joviale. Je m'épanouis d'autant plus lorsque je participe à des projets alignés avec mes valeurs.
 
-J'apprécie que les choses soient transparentes et bien organisées, et contribuer à ce qu'elles le deviennent. Je suis Sagittaire ascendant Jira et mon animal totem est une réunion qui finit à l'heure. J'aime travailler en binôme, travailler seule, et [animer des réunions](https://www.tahanea.net/talks.html) de partage de connaissances. Je suis très à l'aise en télétravail mais je serais ravie de passer un peu de temps dans des bureaux proches de chez moi à **Nantes** !
+J'apprécie que les choses soient transparentes et bien organisées, et j'aime contribuer à ce qu'elles le deviennent. Sagittaire ascendant Jira, mon animal totem est une réunion qui finit à l'heure. J'aime travailler en binôme, travailler seule et [animer des réunions](https://www.tahanea.net/talks.html) de partage de connaissances. Je suis très à l'aise en télétravail mais je serais ravie de passer un peu de temps dans des bureaux proches de chez moi à **Nantes** !
 
 J'occupe mon temps libre à bidouiller sur ce site, dessiner, boire du café et à jouer aux jeux-vidéo.
 
@@ -18,7 +18,7 @@ J'occupe mon temps libre à bidouiller sur ce site, dessiner, boire du café et 
 ### 1 - Dev avec un produit complexe
 J'apprends vite, et je n'ai pas peur d'un peu de dette technique !
 - ingénieur logiciel senior
-- développeuse backend
+- développeuse backend senior
 
 ### 2 - Management
 J'ai un bon relationnel et j'aime transmettre.
@@ -34,65 +34,65 @@ J'aime décortiquer et modéliser des problèmes méthodiquement.
 
 ## ⚙️ Compétences communes
 Des compétences classiques après 10 ans de développement backend
-- Java, Object Oriented Programming
-- Version Control, CI/CD Tools
-- Relational Databases
-- API Design
-- System Design & Architecture
-- System Thinking
-- Fluent in French & English
-- User-Centric Technical Design
-- Technical Debt Management
-- Mentoring, Code Review
-- Technical Writing & Documentation
-- Project Management
+- Java, Programmation Orientée Objet
+- Contrôle de Versions, CI/CD
+- Base de données relationnelles
+- Design d'API, REST
+- Architecture logicielle
+- Systémique et Modélisation
+- Bilingue Français/Anglais
+- Design centré sur l'Utilisateur
+- Gestion de Dette Technique
+- Mentoring, Revue de Code
+- Documentation et Rédaction technique
+- Gestion de Projet
 
 ## 💎 Compétences rares
 Des compétences un peu plus exotiques (la 3e va vous surprendre!) (non)
 - Domain Driven Design & Microservices
-- Rule-Based Systems
-- Natural Language Generation
-- LLM Output Quality Evaluation
+- IA Symboliques
+- Génération Automatique de Texte
+- Evaluation des LLMs
 - Cross-functional Discovery
-- Technical Presentation
+- Présentations Techniques
 
 ## 🗺️ Domaines métier
-Areas of product experience and domain knowledge
-- Text Generation & GenAI
+J'ai travaillé dans les domaines suivants :
+- Génération de Texte & GenAI
 - Business Intelligence
-- Project & Work Management
-- Content & Knowledge Management
-- Public Tenders & Contracts
-- Search Engine
-- Credit & Balance Management
-- Batch Data Processing
+- Gestion de Projet
+- Gestion de Connaissances
+- Marchés Publics
+- Moteur de Recherche
+- Gestion de Paiements
+- Traitement de Données en Batch
 - Medical Writing
 
 ## 🌱 Bientôt 
-Things I’m actively exploring and developing
+Les sujets sur lesquels je monte en compétences
 - Continuous Product Discovery
-- Functional Programming 
+- Programmation Fonctionnelle
 - OCaml, Scala
 
-# Work experience
+# Postes occupés
 
 
 ## Yseop
-[Natural Language Generation company](https://yseop.com/) specialized in Life Sciences, 90% remote position
+[Entreprise de génération automatique de texte](https://yseop.com/) spécialisée pour les Industries Pharmaceutiques, télétravail à 90%
 
 10.2024 - 07.2026
 ### Product Tech Lead
-Over the course of 18+ months, I managed two teams composed of 2 to 5 junior to senior developers, led performance reviews, gave feedbacks in French and English, facilitated many meetings, and contributed to product design decisions about **ontology and rule-based NLG features**. I relentlessly advocated for **automation**, **Domain Driven Design** and **good development practices**. 
+Pendant plus de 18 mois, j'ai encadré deux équipes de 2 à 5 développeurs aux profils junior à senior, mené les entretiens annuels, donné des retours en français et en anglais, animé de nombreuses réunions et contribué aux décisions de conception produit sur les **fonctionnalités de génération de texte à base d'ontologies et de règles**. J'ai continuellement poussé pour défendre plus d'**automatisation**, le **Domain Driven Design** et les **bonnes pratiques de développement**.
 
-Q1: joined an existing team of 8 as a **senior developer**. Developed NLG code snippets to write about Time-To-Event CSR data, and designed a new snippet framework to **reduce tech debt** and make them more structured and scalable, using linguistics and text generation domain concepts to create a modular pipeline.
+T1 : arrivée dans une équipe déjà constituée de 8 personnes, en tant que **développeuse senior**. Développement de snippets de génération de texte pour rédiger une section du CSR, et conception d'un nouveau framework de snippets pour **réduire la dette technique** et les rendre plus structurés et plus évolutifs, en m'appuyant sur des concepts métier de linguistique et de génération de texte pour créer une pipeline modulaire.
 
-Q2: promoted to **tech lead** of a new team, paired with a new Product Manager; developed new snippets for the PK/PD sections of the CSR, using the new snippet framework. Built dashboards to follow teamwork and testing day-to-day. Closely supervised **QA requirements**. 
+T2 : promue **tech lead** d'une nouvelle équipe, en binôme avec une Product Manager nouvellement arrivée ; développement de nouveaux snippets pour les sections PK/PD des CSR, avec le nouveau framework. Création de tableaux de bord pour suivre au quotidien le travail de l'équipe et les tests. Suivi attentif des **exigences QA**.
 
-Q3: joined a task force to create dozens of snippets in a few weeks by **leveraging AI adoption** and the new snippet framework. 
+T3 : participation à une task force pour créer des dizaines de snippets en quelques semaines, en **tirant parti de l'adoption de l'IA** et du nouveau framework.
 
-Q4: worked on **team building** to restore team morale. Joined a new task force to rewrite existing snippets, focusing on making the comparison of data completely generic across snippets. 
+T4 : travail de **cohésion d'équipe** pour restaurer le moral. Participation à une nouvelle task force pour réécrire les snippets existants, avec pour objectif de rendre la comparaison des données entièrement générique d'un snippet à l'autre.
 
-Q5 & Q6: became the tech lead of a new team whose purpose was to develop, from scratch, a **Quality Assessment tool to test LLM features** across the product, to maintain and test new LLM features, and to make snippets development even more **scalable**. 
+T5 & T6 : tech lead d'une nouvelle équipe chargée de développer de zéro un **outil d'évaluation de la qualité pour tester les fonctionnalités LLM** du produit, de maintenir et tester les nouvelles fonctionnalités LLM, et de rendre le développement des snippets encore plus **industrialisable**.
 
 - Java 21 & 25
 - Management
@@ -107,12 +107,12 @@ Q5 & Q6: became the tech lead of a new team whose purpose was to develop, from s
 ---
 
 ## Doubletrade - Intescia Group
-[European Public Tenders SaaS company](https://www.doubletrade.com/), 100% remote position
+[Éditeur SaaS européen dédié aux marchés publics](https://www.doubletrade.com/), télétravail à 100%
 
 07.2021 - 09.2024
-### Backend Software Engineer
-I joined a 10+ people team of all senior, full remote software engineers practicing a kind of in-house scrumban; adopted strong **Domain Driven Design** habits in weekly product architecture workshops; maintained the **80+ microservices**, created new microservices; worked on the Microsoft 365 integration; improved the xls and xlsx parsing features; was part of the weekly rotation to track bugs daily in production; facilitated agile ceremonies with 30+ attendees.
-Probably the best work environment I've seen so far.
+### Développeuse backend
+J'ai rejoint une équipe de plus de 10 développeurs, tous seniors et à distance, qui pratiquaient une forme de scrumban maison ; j'y ai appris de solides habitudes de **Domain Driven Design** lors des ateliers hebdomadaires d'architecture produit ; j'ai participé à la maintenance des **80+ microservices** et en ai créé de nouveaux ; j'ai travaillé sur l'intégration Microsoft 365 ; j'ai amélioré les fonctionnalités de parsing xls et xlsx ; je faisais partie de la rotation hebdomadaire de suivi quotidien des bugs en production ; j'ai animé des cérémonies agiles réunissant plus de 30 personnes.
+Probablement le meilleur environnement de travail que j'aie connu jusqu'ici.
 
 - Java 17
 - GitLab
@@ -130,11 +130,11 @@ Probably the best work environment I've seen so far.
 ---
 
 ## Capgemini
-[IT Services](https://www.capgemini.com/)
+[ESN](https://www.capgemini.com/)
 
 01.2020 - 06.2021
-### Software Engineer
-This role was my first time working in French. I joined a 200-people project with **18 years of legacy code**; maintained undocumented data pipelines with JMS, SQL scripts and stored procedures; successfully navigated **complex PR reviews with dozens of feature toggles** and testing environments; worked with sensitive information (personal data and payment data); started remote work during the pandemic.
+### Ingénieure logicielle
+Mon tout premier poste en français. J'ai rejoint un projet de 200 personnes avec **18 ans de code legacy** ; j'ai maintenu des pipelines de données non documentées, en JMS, scripts SQL et procédures stockées ; j'ai mené des **revues de code complexes, avec des dizaines de feature toggles** et d'environnements de test ; j'ai manipulé des données sensibles (données personnelles et données de paiement) ; j'ai commencé le télétravail pendant la pandémie.
 
 - Java 7
 - JSP
@@ -144,8 +144,8 @@ This role was my first time working in French. I joined a 200-people project wit
 - Jenkins
 
 02.2018 - 12.2019
-### Software Engineer
-As part of the Atlassian Factory team, I developed and maintained plugins for Jira Software and Confluence; configured and administered Jira instances; audited instances for Capgemini clients; obtained an Atlassian certification: Agile development with Jira Software; was the scrum master for 6 months, and then became the acting tech lead, mentored junior developers and career-changing colleagues to facilitate their integration; attended the '19 Atlassian Tour in Las Vegas.
+### Ingénieure logicielle
+Au sein de l'Atlassian Factory, j'ai développé et maintenu des plugins pour Jira Software et Confluence ; configuré et administré des instances Jira ; audité les instances de clients Capgemini ; obtenu une certification Atlassian : Agile development with Jira Software ; été scrum master pendant 6 mois, puis tech lead par défaut ; accompagné des développeurs juniors et des collègues en reconversion pour faciliter leur intégration ; participé à l'Atlassian Tour 2019 à Las Vegas.
 
 - Java 8
 - Jira
@@ -157,29 +157,29 @@ As part of the Atlassian Factory team, I developed and maintained plugins for Ji
 ---
 
 ## Yseop
-[Natural Language Generation company](https://yseop.com/)
+[Entreprise de génération automatique de texte](https://yseop.com/)
 
 03.2016 - 08.2017
-### Research Associate at [INSA de Lyon](https://www.insa-lyon.fr/en/)
-As a computer science PhD student, I occupied my time with literature review, data preprocessing, presentations, and investigating data mining algorithms; I also developed a Knime node to explore conversation data.
-I decided to leave the program, in order to work on more practical subjects where I could see real-world impact.
+### Doctorante en informatique à l'[INSA de Lyon](https://www.insa-lyon.fr/)
+J'ai occupé mon temps de thèse avec de la revue d'état de l'art, du prétraitement de données, des présentations et l'exploration d'algorithmes de fouille de données ; j'ai aussi développé un nœud Knime pour explorer des données conversationnelles.
+J'ai décidé d'interrompre cette thèse pour travailler sur des sujets plus concrets.
 
 - Java
 - python
 - R
 - LaTeX
-- Research
+- Recherche
 
 07.2015 - 02.2016
-### Junior R&D Engineer
-I worked on an Yseop knowledge base to model generic Business Intelligence key concepts; in a team of 3, we modeled semantic content to generate graph captions in QlikView, such as bar charts or time series; I developed tests and test data to ensure generated sentences were correct.
-- Yseop in-house language
+### Ingénieure R&D junior
+J'ai travaillé sur une base de connaissances Yseop pour modéliser les concepts clés génériques de la Business Intelligence ; dans une équipe de 3 personnes, nous avons modélisé le contenu sémantique nécessaire à la génération de légendes de graphiques dans QlikView, notamment des diagrammes en barres ou des séries temporelles ; j'ai créé des tests et des jeux de données de test pour garantir la correction des phrases générées.
+- langage interne Yseop
 - git
 - shell
 
 01.2015 - 06.2015
-### R&D Intern (Linguist)
-My internship was supervised by R. Salmon during his [PhD](https://theses.fr/2017USPCC196); I transformed the [X-TAG lexicalized tree-adjoining English grammar](https://www.cis.upenn.edu/~xtag/tech-report/) into a [metagrammar](https://www.linguist.univ-paris-diderot.fr/~mcandito/Publications/candito-these.pdf) tailored to the Yseop text generation engine, using the [XMG compiler](https://lipn.univ-paris13.fr/~leroux/papers/cl-xmg-hal.pdf). 
+### Stagiaire R&D (linguiste)
+Mon stage a été encadré par R. Salmon dans le cadre de sa [thèse](https://theses.fr/2017USPCC196) ; j'ai converti la [grammaire d'arbres adjoints lexicalisée X-TAG de l'anglais](https://www.cis.upenn.edu/~xtag/tech-report/) en une [métagrammaire](https://www.linguist.univ-paris-diderot.fr/~mcandito/Publications/candito-these.pdf) adaptée au moteur de génération de texte d'Yseop, à l'aide du [compilateur XMG](https://lipn.univ-paris13.fr/~leroux/papers/cl-xmg-hal.pdf).
 - XMG
 - XMG 2.0
 - Java
@@ -187,27 +187,7 @@ My internship was supervised by R. Salmon during his [PhD](https://theses.fr/201
 - python
 - git
 
----
-
-## Accor
-[Hôtel Ibis Paris Bastille Opéra (\*\*\*)](https://all.accor.com/booking/fr/ibis/hotel/1399?destination=11th-arrondissement-75011-paris-france)
-
-06.2013 - 03.2014
-### Réceptionniste (Student job)
-
-I worked the evening shifts (7pm-11pm or 8pm-12am) 4 to 7 days a week, while studying for my Master's degree. I processed check-ins and check-outs, assigned rooms, handled guest payments, and resolved complaints. I also coordinated with other hotels to help guests when the hotel was fully booked. I got to practice welcoming guests in French, English, Dutch, Russian and Spanish.
-
----
-
-## Institut du Cerveau
-[Service Communication et Relations donateurs](https://parisbraininstitute.org/)
-
-06.2012 - 09.2012
-### Assistante de saisie (Student job)
-
-My job was to collect incoming mail donations every day, and to input, update and verify donator information in the donations database. I would then print and sort each donation receipt. It was a full-time 9-to-5 summer job.
-
-# Etudes
+# Études
 
 ## Master de Linguistique Informatique
 09.2013 - 06.2015

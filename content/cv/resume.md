@@ -37,7 +37,7 @@ The technical skills you'd expect from a dev with 10y experience
 - Java, Object Oriented Programming
 - Version Control, CI/CD Tools
 - Relational Databases
-- API Design
+- API Design, REST
 - System Design & Architecture
 - System Thinking
 - Fluent in French & English
@@ -186,26 +186,6 @@ My internship was supervised by R. Salmon during his [PhD](https://theses.fr/201
 - Perl
 - python
 - git
-
----
-
-## Accor
-[Paris Bastille Opera Ibis (3-star) Hotel](https://all.accor.com/booking/fr/ibis/hotel/1399?destination=11th-arrondissement-75011-paris-france)
-
-06.2013 - 03.2014
-### Hotel Receptionist (Student job)
-
-I worked the evening shifts (7pm-11pm or 8pm-12am) 4 to 7 days a week, while studying for my Master's degree. I processed check-ins and check-outs, assigned rooms, handled guest payments, and resolved complaints. I also coordinated with other hotels to help guests when the hotel was fully booked. I got to practice welcoming guests in French, English, Dutch, Russian and Spanish.
-
----
-
-## Paris Brain Institute
-[Donations and Communications Department](https://parisbraininstitute.org/)
-
-06.2012 - 09.2012
-### Data Entry Clerk (Student job)
-
-My job was to collect incoming mail donations every day, and to input, update and verify donator information in the donations database. I would then print and sort each donation receipt. It was a full-time 9-to-5 summer job.
 
 # Education
 
