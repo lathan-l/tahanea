@@ -95,7 +95,7 @@ body::before {
   right: -7rem;
   width: 22rem;
   height: 22rem;
-  background-image: url("img/toppng.com-coffee-stain-transparent-2450x2478.png");
+  background-image: url("/img/background/coffee-mug-stain.png");
   background-repeat: no-repeat;
   background-size: contain;
   transform: rotate(-45deg);
@@ -108,7 +108,7 @@ body::before {
    top-left corner so it scrolls away once the reader moves down */
 body:has(.layout--page)::before,
 body:has(.layout--articles)::before {
-  background-image: url("img/pngkey.com-color-splatter-png-461231.png");
+  background-image: url("/img/background/ink-splatter.png");
   top: 0;
   left: 0;
   right: auto;
