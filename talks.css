@@ -21,7 +21,7 @@
    corner, and (via the base rule) at z-index -1 behind the text.
    -------------------------------------------------------------------------- */
 body:has(.layout--talks)::before {
-  background-image: url("img/watercolor-drips.png");
+  background-image: url("/img/background/watercolor-drips.png");
   background-repeat: no-repeat;
   background-position: left top;
   background-size: contain;
@@ -66,7 +66,7 @@ body:has(.layout--talks)::before {
   /* dropped below the cap line so the finger points at the middle of the
      small caps rather than over their tops */
   vertical-align: -0.01em;
-  background: url("img/manicule-right.png") no-repeat center / contain;
+  background: url("/img/icons/manicule-right.png") no-repeat center / contain;
 }
 
 .talk__abstract h4 {
@@ -127,7 +127,7 @@ body:has(.layout--talks)::before {
 /* --------------------------------------------------------------------------
    The picture — a taped-up polaroid
 
-   `img/polaroid_frame.png` is 500x610 with a transparent window and two strips
+   `polaroid_frame.png` is 500x610 with a transparent window and two strips
    of tape bleeding past the frame's edges. The photo and the caption are
    placed in percentages of the wrapper, so everything scales together.
    Window: x 75..412, y 87..443. Caption band below it: y 443..539, within the
@@ -148,7 +148,7 @@ body:has(.layout--talks)::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("img/polaroid_frame.png") no-repeat center / 100% 100%;
+  background: url("/img/frames/polaroid_frame.png") no-repeat center / 100% 100%;
   pointer-events: none;
 }
 
@@ -248,15 +248,15 @@ body:has(.layout--talks)::before {
 }
 
 .event-card__link--slides::before {
-  background-image: url("img/icon-paperclip.svg");
+  background-image: url("/img/icons/icon-paperclip.svg");
 }
 
 .event-card__link--video::before {
-  background-image: url("img/icon-camera.svg");
+  background-image: url("/img/icons/icon-camera.svg");
 }
 
 .event-card__link--feedbacks::before {
-  background-image: url("img/icon-megaphone.svg");
+  background-image: url("/img/icons/icon-megaphone.svg");
 }
 
 /* --------------------------------------------------------------------------
