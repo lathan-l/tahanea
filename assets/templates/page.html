@@ -1,7 +1,13 @@
-<div class="layout layout--page">
-    <nav class="chapter-nav" aria-label="Chapter navigation">
-        <p class="chapter-nav__title">this is a work in progress</p>
+<link rel="stylesheet" href="/article.css">
+{# `layout--with-toc` widens the left column for the section list; without it
+the article stands alone and article.css centres the reading column. #}
+<div class="layout layout--page{% if has_toc %} layout--with-toc{% endif %}">
+    {%- if has_toc -%}
+    <nav class="chapter-nav chapter-nav--toc" aria-label="Table of contents">
+        <p class="chapter-nav__title">contents</p>
+        {{safe (toc) }}
     </nav>
+    {%- endif -%}
     <main>
         {%- if date or has_page_tags -%}
         <header class="page-header">

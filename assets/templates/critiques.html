@@ -1,19 +1,18 @@
-<div class="layout layout--index home--index">
+<link rel="stylesheet" href="/critiques.css">
+<div class="layout layout--index home--index layout--talks">
     <nav class="chapter-nav home-menu" aria-label="Site navigation">
         <ul class="home-menu__list">
             <li class="home-menu__item home-menu__item--resume"><a href="/cv/resume.html">my resume</a></li>
-            <li class="home-menu__item home-menu__item--articles"><a href="/articles.html">articles</a></li>
-            <li class="home-menu__item home-menu__item--articles"><a href="/talks.html">talks</a></li>
-            <li class="home-menu__item home-menu__item--articles"><a href="/critiques.html">critiques</a></li>
-            <li class="home-menu__item home-menu__item--articles"><a href="/mysterious_links.html">mysterious links</a>
+            <li class="home-menu__item home-menu__item"><a href="/articles.html">articles</a></li>
+            <li class="home-menu__item home-menu__item"><a href="/talks.html">talks</a></li>
+            <li class="home-menu__item home-menu__selected-item"><a href="/critiques.html">critiques</a></li>
+            <li class="home-menu__item home-menu__item"><a href="/mysterious_links.html">mysterious links</a>
             </li>
 
         </ul>
     </nav>
     <main>
         {{safe (yocaml_body) }}
-        <hr class="asterism" aria-hidden="true">
-        {% if has_articles %}
         {# YOCaml only gives 3-letter month/weekday idents, so map the numeric
         fields (day_of_week: 0=Mon..6=Sun, month: 1..12) to full names. #}
         {% set weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
@@ -40,8 +39,6 @@
             </li>
             {% endfor %}
         </ul>
-        {% else %}
-        <p>There are no articles yet.</p>
-        {% endif %}
+        </ul>
     </main>
 </div>
