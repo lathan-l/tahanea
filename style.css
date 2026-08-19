@@ -131,6 +131,20 @@ body:has(.layout--articles)::before {
   transform: none;
 }
 
+/* On a phone the columns stack (§3e) and the text runs the full width of the
+   page, so every line crosses the spray instead of clearing it — the gradient
+   alone isn't enough there. Fade the whole thing to a hint of a stain, and
+   keep it in the top corner rather than trailing 44rem down the article. */
+@media (max-width: 46rem) {
+
+  body:has(.layout--page)::before,
+  body:has(.layout--articles)::before {
+    width: 15rem;
+    height: 30rem;
+    opacity: 0.28;
+  }
+}
+
 /* --------------------------------------------------------------------------
    3. Layout: navigation column + reading column
    -------------------------------------------------------------------------- */
