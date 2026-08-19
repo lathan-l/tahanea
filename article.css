@@ -1,0 +1,116 @@
+/* ==========================================================================
+   Articles — the table of contents column, and what to do without one.
+
+   Loaded after reset.css and style.css (the <link> sits at the top of
+   assets/templates/page.html), so it only adds what article pages do
+   differently: a wider left column holding the section list, and a centred
+   reading column on articles that have no headings to list.
+
+   The markup comes from Yocaml_markdown.Doc.table_of_contents — a bare
+   <ul><li><a>, nested one level per heading level — wrapped by page.html in
+   `nav.chapter-nav.chapter-nav--toc`. Wearing `.chapter-nav` means the column
+   already gets style.css's sticky, marker-less, un-underlined link treatment;
+   everything below is the table-of-contents part on top of it.
+   ========================================================================== */
+
+:root {
+  /* wider than style.css's 13rem `--nav-width`: section titles are whole
+     sentences, and at 13rem most of them wrapped to three lines */
+  --toc-width: 17rem;
+}
+
+/* --------------------------------------------------------------------------
+   With a table of contents — a wider left column
+
+   Overriding `--nav-width` on the layout is enough: `.chapter-nav`'s
+   flex-basis and `.layout`'s max-width are both written in terms of it, so the
+   column grows and the layout grows with it, leaving `--measure` untouched.
+   -------------------------------------------------------------------------- */
+.layout--with-toc {
+  --nav-width: var(--toc-width);
+}
+
+/* the site title and its rule share .layout's geometry (see style.css §7), so
+   they need the same widening or the title would sit 2rem right of the column
+   it is supposed to line up with */
+body:has(.layout--with-toc)>header {
+  max-width: calc(var(--measure) + var(--toc-width) + var(--gutter));
+}
+
+.chapter-nav--toc {
+  /* a step up from `.chapter-nav`'s 0.95rem: small capitals sit at about
+     x-height, so at the column's default size the entries read smaller than
+     they measure — this brings them back to the weight of the menu links */
+  font-size: 1.1rem;
+  /* the entries are titles, not prose: pull the lines together so a wrapped
+     one reads as a single entry rather than two */
+  line-height: 1.35;
+  /* the column already inherits the small-caps face from `.chapter-nav`, but
+     that face only draws lowercase letters as small capitals — the headings
+     come out of the markdown in sentence case, so their first letter (and any
+     name inside) would tower over the rest. Lowercasing first gives an even
+     line of small capitals, the way the home menu and the talk titles do. */
+  text-transform: lowercase;
+}
+
+/* only the outer list sticks; style.css's `.chapter-nav ul` rule would
+   otherwise pin every nested list to the top of the viewport as well */
+.chapter-nav--toc ul ul {
+  position: static;
+  /* stepped in and hung off a faint rule, which carries the nesting now that
+     the list markers are gone */
+  margin: 0.4rem 0 0.7rem;
+  padding-left: 0.8rem;
+  border-left: 1px solid var(--rule);
+  /* relative, so each level down is a little smaller than the one above; the
+     step is gentle because it compounds — the deepest headings in the longer
+     essays are four levels in and still have to be readable */
+  font-size: 0.95em;
+}
+
+.chapter-nav--toc li {
+  margin-bottom: 0.45rem;
+}
+
+/* the top-level entries are the article's main sections — spaced a little
+   further apart than their subsections, and lettered like the menu links */
+.chapter-nav--toc>ul>li {
+  margin-bottom: 0.9rem;
+  letter-spacing: 0.03em;
+}
+
+/* the deeper an entry sits, the quieter it reads */
+.chapter-nav--toc ul ul a {
+  color: var(--ink-soft);
+}
+
+.chapter-nav--toc ul ul a:hover,
+.chapter-nav--toc ul ul a:focus {
+  color: var(--link-hover);
+}
+
+/* --------------------------------------------------------------------------
+   Without a table of contents — one centred reading column
+
+   The template drops the nav entirely, so `main` is the layout's only child;
+   auto margins centre it in the layout box (and so in the page) instead of
+   leaving it hanging on the left where the missing column used to be.
+   -------------------------------------------------------------------------- */
+.layout--page:not(.layout--with-toc) main {
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Narrow screens — the column stacks above the article (style.css §3e), where
+   a sticky, hanging-indent outline would only get in the way
+   -------------------------------------------------------------------------- */
+@media (max-width: 46rem) {
+  .chapter-nav--toc ul ul {
+    border-left: 0;
+    padding-left: 0.7rem;
+  }
+
+  .chapter-nav--toc>ul>li {
+    margin-bottom: 0.6rem;
+  }
+}
