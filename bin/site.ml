@@ -66,7 +66,10 @@ let create_article source_path =
       Yocaml_jingoo.read_templates
         Path.[ templates_path / "page.html"; templates_path / "layout.html" ]
     in
-    content |> Yocaml_markdown.from_string_to_html
+    let doc = Yocaml_markdown.Doc.from_string content in
+    let toc = Yocaml_markdown.Doc.table_of_contents doc in
+    let metadata = Archetype.Article.with_toc metadata toc in
+    doc |> Yocaml_markdown.Doc.to_html
     |> apply_templates ~metadata (module Archetype.Article)
   in
   Action.Static.write_file target_article_path pipeline
@@ -182,10 +185,31 @@ let create_mysterious_links =
             templates_path / "mysterious_links.html";
             templates_path / "layout.html";
           ]
-    and+ articles = fetch_articles in
-    let metadata = Archetype.Articles.with_page ~page:metadata ~articles in
+    in
     content |> Yocaml_markdown.from_string_to_html
-    |> apply_templates ~metadata (module Archetype.Articles)
+    |> apply_templates ~metadata (module Archetype.Page)
+  in
+  Action.Static.write_file target_page_path pipeline
+
+let create_critiques =
+  let source_path = Path.rel [ "content"; "critiques.md" ] in
+  let target_page_path = Path.rel [ ".target"; "critiques.html" ] in
+  let pipeline =
+    let open Task in
+    let+ metadata, content =
+      Pipeline.read_file_with_metadata
+        (module Yocaml_yaml)
+        (module Archetype.Page)
+        source_path
+    and+ () = Pipeline.track_file binary_path
+    and+ apply_templates =
+      Pipeline.read_templates
+        (module Yocaml_jingoo)
+        Path.
+          [ templates_path / "critiques.html"; templates_path / "layout.html" ]
+    in
+    content |> Yocaml_markdown.from_string_to_html
+    |> apply_templates ~metadata (module Archetype.Page)
   in
   Action.Static.write_file target_page_path pipeline
 
@@ -215,8 +239,9 @@ let program () =
   let open Eff in
   Action.restore_cache cache_path
   >>= copy_cname >>= copy_css >>= copy_images >>= copy_pdfs >>= create_404
-  >>= create_articles >>= create_articles_index >>= create_talks_index
-  >>= create_mysterious_links >>= create_index >>= create_all_resumes
+  >>= create_critiques >>= create_articles >>= create_articles_index
+  >>= create_talks_index >>= create_mysterious_links >>= create_index
+  >>= create_all_resumes
   >>= Action.store_cache cache_path
 
 let () =

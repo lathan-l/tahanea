@@ -1,0 +1,311 @@
+/* ==========================================================================
+   Talks index — small-caps talk titles and one postcard per event.
+
+   Loaded after reset.css and style.css (the <link> sits at the top of
+   assets/templates/talks_index.html), so it only overrides what the talks
+   page does differently: the page decoration and the event cards.
+   Everything here is scoped to `.layout--talks` so nothing leaks elsewhere.
+   ========================================================================== */
+
+.layout--talks {
+  /* the postcards are a lighter box floating on the beige page */
+  --card-bg: #fdfaf1;
+  --card-border: #ddd0b2;
+  --card-shadow: rgba(60, 45, 20, 0.14);
+}
+
+/* --------------------------------------------------------------------------
+   Page decoration — a pile of scrabble tiles spilling in at the top-left corner
+
+   Replaces the default coffee stain from style.css, and (via the base rule)
+   sits at z-index -1 behind the text.
+
+   `html { overflow-x: clip }` in style.css trims the horizontal overhang; the
+   vertical one just sits above the scroll origin, so neither adds a scrollbar.
+   -------------------------------------------------------------------------- */
+body:has(.layout--talks)::before {
+  background-image: url("/img/background/scrabble.png");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: contain;
+  /* the file is square (800x800), so a square box lets `contain` fill it
+     exactly and the offsets below can be read in the image's own terms.
+     26rem also sets the scale: a tile comes out ~2.8rem across, big enough to
+     read the letters but small enough to still look like a spilt boxful */
+  width: 40rem;
+  height: 30rem;
+  /* the heap sits at 0.6..24.1rem down and 2.5..22.9rem across inside that
+     box, so these offsets leave a ~14x9rem patch of it in the corner: enough
+     tiles to read as a pile, with the rest cut off by the two page edges */
+  top: -15.1rem;
+  left: -9rem;
+  right: auto;
+  opacity: 0.85;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Talks
+   -------------------------------------------------------------------------- */
+.talk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin: 0;
+}
+
+/* small caps, like the menu links in the left column (which get their caps
+   from the same face) — not the lowercase body font the other headings use */
+.talk__title {
+  font-family: var(--head-font);
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.6rem;
+}
+
+/* a woodtype manicule pointing at the title, the way an old book flags a
+   passage; decorative only, so it stays a pseudo-element with no alt text */
+.talk__title::before {
+  content: "";
+  display: inline-block;
+  /* the cut-out is 320x145 */
+  width: 1.9rem;
+  height: 0.86rem;
+  margin-right: 0.5rem;
+  /* dropped below the cap line so the finger points at the middle of the
+     small caps rather than over their tops */
+  vertical-align: -0.01em;
+  background: url("/img/icons/manicule-right.png") no-repeat center / contain;
+}
+
+.talk__abstract h4 {
+  /* the abstracts' own "#### abstract" sub-headings — small and unobtrusive */
+  font-size: 0.95rem;
+  margin: 1rem 0 0.3rem;
+}
+
+.talk__abstract> :last-child {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Event postcards
+   -------------------------------------------------------------------------- */
+.event-cards {
+  display: flex;
+  flex-direction: column;
+  /* room for the polaroids, which stand slightly proud of their cards */
+  gap: 2rem;
+  margin: 1.5rem 0 0;
+}
+
+.event-card {
+  display: grid;
+  grid-template-columns: 11.5rem 1fr;
+  gap: 1.1rem;
+  /* the polaroid is taller than its few lines of text — centre them against it
+     rather than leaving a hole at the bottom of the card */
+  align-items: center;
+  margin: 0;
+  padding: 0.8rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px var(--card-shadow), 0 6px 14px -8px var(--card-shadow);
+  /* postcards in a pile never land perfectly square */
+  transform: rotate(-0.35deg);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.event-card:nth-child(even) {
+  transform: rotate(0.4deg);
+}
+
+/* no picture: let the text use the whole card */
+.event-card--plain {
+  grid-template-columns: 1fr;
+}
+
+.event-card:hover,
+.event-card:focus-within {
+  /* picked up off the pile */
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: 0 2px 3px var(--card-shadow), 0 12px 20px -10px var(--card-shadow);
+}
+
+/* --------------------------------------------------------------------------
+   The picture — a taped-up polaroid
+
+   `polaroid_frame.png` is 500x610 with a transparent window and two strips
+   of tape bleeding past the frame's edges. The photo and the caption are
+   placed in percentages of the wrapper, so everything scales together.
+   Window: x 75..412, y 87..443. Caption band below it: y 443..539, within the
+   frame body's x 47..437.
+   -------------------------------------------------------------------------- */
+.event-card__photo {
+  position: relative;
+  aspect-ratio: 500 / 610;
+  /* the polaroid is taped onto the card rather than boxed inside it: the
+     negative margins let it stand proud top and bottom, which keeps the card
+     short while the picture itself stays big */
+  margin-block: -1rem;
+}
+
+/* the frame goes over the photo, so the tape lies on top of the picture the
+   way real tape would, and the window's ragged edge trims the photo */
+.event-card__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/img/frames/polaroid_frame.png") no-repeat center / 100% 100%;
+  pointer-events: none;
+}
+
+.event-card__image {
+  position: absolute;
+  left: 14.6%;
+  top: 13.9%;
+  width: 68.2%;
+  height: 59.2%;
+  object-fit: cover;
+}
+
+/* handwritten on the frame's bottom strip, the way you'd label a snapshot */
+.event-card__caption {
+  position: absolute;
+  /* above the frame, which paints last */
+  z-index: 1;
+  left: 9.4%;
+  right: 12.6%;
+  top: 72.6%;
+  height: 15.7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Homemade Apple", cursive;
+  /* shrink with the frame on narrow screens, but never past legibility */
+  font-size: clamp(0.5rem, 1.1vw + 0.2rem, 0.62rem);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--ink-soft);
+}
+
+/* the postcard's written side */
+.event-card__body {
+  min-width: 0;
+}
+
+/* cards with no picture have nowhere to caption, so they date the text side */
+.event-card__date {
+  display: block;
+  font-family: "Homemade Apple", cursive;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+
+.event-card__name {
+  font-family: var(--head-font);
+  text-transform: lowercase;
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  /* beats `.layout h3` in style.css, which bolds and sepias sub-headings */
+  color: var(--ink);
+  margin: 0 0 0.15rem;
+}
+
+.event-card__org {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.event-card .tag-list {
+  margin-top: 0.6rem;
+}
+
+/* slides / video / feedbacks, side by side under the tags */
+.event-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin: 0.7rem 0 0;
+  font-size: 0.9rem;
+}
+
+/* a paperclip for the slides, a camera for the video and a megaphone for the
+   feedbacks, drawn ahead of the word the way you'd clip or pin the thing
+   itself to a postcard. `icon-paperclip.svg`, `icon-camera.svg` and
+   `icon-megaphone.svg` are the Streamline Freehand duotones recoloured to the
+   page's ink and coffee-stain brown, so the icons carry their own two colours
+   and need no filter here. */
+.event-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.event-card__link::before {
+  content: "";
+  /* stops flex from squeezing the square when the card gets narrow */
+  flex: none;
+  width: 1.15em;
+  height: 1.15em;
+  background: no-repeat center / contain;
+}
+
+.event-card__link--slides::before {
+  background-image: url("/img/icons/icon-paperclip.svg");
+}
+
+.event-card__link--video::before {
+  background-image: url("/img/icons/icon-camera.svg");
+}
+
+.event-card__link--feedbacks::before {
+  background-image: url("/img/icons/icon-megaphone.svg");
+}
+
+/* --------------------------------------------------------------------------
+   Narrow screens — the picture goes above the text, the tiles shrink
+   -------------------------------------------------------------------------- */
+@media (max-width: 34rem) {
+
+  /* the polaroid goes above the text, centred rather than stretched wide */
+  .event-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .event-card__photo {
+    width: 13rem;
+    /* stacked, it only needs to poke out of the top edge */
+    margin-block: -1.4rem 0;
+  }
+
+  .event-card__body {
+    width: 100%;
+  }
+
+  /* same framing, scaled down: the offsets keep their ratio to the box so the
+     heap is still cut by both edges instead of drifting back into view */
+  body:has(.layout--talks)::before {
+    width: 15rem;
+    height: 15rem;
+    top: -8.7rem;
+    left: -5.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .event-card,
+  .event-card:nth-child(even),
+  .event-card:hover,
+  .event-card:focus-within {
+    transform: none;
+    transition: none;
+  }
+}

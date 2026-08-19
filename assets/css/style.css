@@ -105,17 +105,29 @@ body::before {
 }
 
 /* content pages and the articles index — ink splatter anchored to the
-   top-left corner so it scrolls away once the reader moves down */
+   top-left corner so it scrolls away once the reader moves down.
+
+   The file is pure black on transparent, so instead of painting it we use it
+   as a mask and ink it with a gradient: full black where it hits the left page
+   edge, then warming to coffee brown and thinning out as the spray reaches
+   right, where the table of contents and the reading column sit on top of it.
+
+   The box is the splatter's own size — 971x1941 `contain`ed at 22rem wide —
+   so the gradient's ends land on the spray's own edges. */
 body:has(.layout--page)::before,
 body:has(.layout--articles)::before {
-  background-image: url("/img/background/ink-splatter.png");
   top: 0;
   left: 0;
   right: auto;
-  width: 44rem;
+  width: 22rem;
   height: 44rem;
-  /* the image is `contain`ed in the 44rem box; pin it to that box's corner */
-  background-position: left top;
+  background: linear-gradient(to right,
+      var(--ink) 0%,
+      #4a3520 40%,
+      rgba(107, 68, 35, 0.55) 75%,
+      rgba(107, 68, 35, 0.3) 100%) no-repeat left top / 100% 100%;
+  -webkit-mask: url("/img/background/ink-splatter.png") no-repeat left top / contain;
+  mask: url("/img/background/ink-splatter.png") no-repeat left top / contain;
   transform: none;
 }
 

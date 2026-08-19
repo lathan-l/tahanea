@@ -2,6 +2,7 @@
 title: "OCaml noob"
 date: 2025-09-13
 tags: ["programming", "OCaml", "Java"]
+display_toc: true
 ---
 > Just logging for science
 

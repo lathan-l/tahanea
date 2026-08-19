@@ -2,6 +2,7 @@
 title: "The Sims are something else"
 date: 2025-01-31
 tags: ["video games", "the sims", "self-reflection"]
+display_toc: true
 ---
 > This not an article about Structured Inventory of Malingered Symptomatology (SIMS), although now I kind of wish it were. 
 
