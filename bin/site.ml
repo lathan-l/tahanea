@@ -1,9 +1,11 @@
 open Yocaml
 module Talk = Model.Talk
+module Critique = Model.Critique
 
 let cache_path = Path.rel [ ".cache" ]
 let target_path = Path.rel [ ".target" ]
 let articles = Path.rel [ "content"; "articles" ]
+let critiques = Path.rel [ "content"; "critiques" ]
 let templates_path = Path.rel [ "assets"; "templates" ]
 let binary_path = Path.from_string Sys.executable_name
 
@@ -191,7 +193,30 @@ let create_mysterious_links =
   in
   Action.Static.write_file target_page_path pipeline
 
-let create_critiques =
+let create_critique source_path =
+  let target_critique_path =
+    source_path
+    |> Path.change_extension "html"
+    |> Path.move ~into:Path.(target_path / "critiques")
+  in
+  let pipeline =
+    let open Task in
+    let+ metadata, content =
+      Yocaml_yaml.Pipeline.read_file_with_metadata (module Critique) source_path
+    and+ () = Pipeline.track_file binary_path
+    and+ apply_templates =
+      Yocaml_jingoo.read_templates
+        Path.
+          [ templates_path / "critiques.html"; templates_path / "layout.html" ]
+    in
+    content |> Yocaml_markdown.from_string_to_html
+    |> apply_templates ~metadata (module Critique)
+  in
+  Action.Static.write_file target_critique_path pipeline
+
+let create_critiques = Batch.iter_files critiques create_critique
+
+let create_critiques_index =
   let source_path = Path.rel [ "content"; "critiques.md" ] in
   let target_page_path = Path.rel [ ".target"; "critiques.html" ] in
   let pipeline =
@@ -239,9 +264,9 @@ let program () =
   let open Eff in
   Action.restore_cache cache_path
   >>= copy_cname >>= copy_css >>= copy_images >>= copy_pdfs >>= create_404
-  >>= create_critiques >>= create_articles >>= create_articles_index
-  >>= create_talks_index >>= create_mysterious_links >>= create_index
-  >>= create_all_resumes
+  >>= create_critiques >>= create_critiques_index >>= create_articles
+  >>= create_articles_index >>= create_talks_index >>= create_mysterious_links
+  >>= create_index >>= create_all_resumes
   >>= Action.store_cache cache_path
 
 let () =
